@@ -3,6 +3,8 @@ import styled from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
 import { Route, Routes } from "react-router-dom";
 
+import TurnPage from "./pages/TurnPage";
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -21,7 +23,9 @@ const App = () => {
     <>
       <GlobalStyle />
       <Container>
-        <h1>Liar Game</h1>
+        <Routes>
+          <Route path="/turn" element={<TurnPage />} />
+        </Routes>
       </Container>
     </>
   );
