@@ -16,12 +16,17 @@ const TurnPage = () => {
         []
       );
 
+    const myId = 1; // 임의 본인 id
     const [currentPlayer, setCurrentPlayer] = useState(null); // 현재 턴인 플레이어
+    const [isMyTurn, setIsMyTurn] = useState(false); // 현재 턴인지 확인
 
     // 랜덤 턴
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * players.length);
-        setCurrentPlayer(players[randomIndex]);
+        const selectedPlayer = players[randomIndex];
+        setCurrentPlayer(selectedPlayer);
+
+        setIsMyTurn(selectedPlayer.id === myId);
       }, [players]);
 
     if (!currentPlayer) {
@@ -48,8 +53,11 @@ const TurnPage = () => {
             </PlayerContainer>
 
             <ChatInputContainer>
-                <ChatInput />
-                <SendButton>전송</SendButton>
+                <ChatInput
+                    placeholder={isMyTurn ? "메세지를 입력해주세요" : "현재 순서가 아닙니다"}
+                    disabled={!isMyTurn}
+                 />
+                <SendButton disabled={!isMyTurn}>전송</SendButton>
             </ChatInputContainer>
         </SectionContainer>
     </PageContainer>
@@ -169,18 +177,23 @@ const ChatInput = styled.input`
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 2vh;
+    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
+
+    &::placeholder {
+        color: ${({ disabled }) => (disabled ? "#aaa" : "#888")};
+    }
 `;
 
 const SendButton = styled.button`
     padding: 8px 16px;
-    background-color: #3498db;
-    color: #ffffff;
     border: none;
     border-radius: 4px;
     font-size: 2vh;
-    cursor: pointer;
+    background-color: ${({ disabled }) => (disabled ? "#ddd" : "#3498db")};
+    color: ${({ disabled }) => (disabled ? "#aaa" : "#ffffff")};
+    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
     &:hover {
-        background-color: #2980b9;
+        background-color: ${({ disabled }) => (disabled ? "#ddd" : "#2980b9")};
     }
 `;
