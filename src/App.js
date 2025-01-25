@@ -4,6 +4,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import { Route, Routes } from "react-router-dom";
 
 import TurnPage from "./pages/TurnPage";
+import ResultPage from "./pages/ResultPage";
 
 const Container = styled.div`
   width: 100%;
@@ -25,6 +26,7 @@ const App = () => {
       <Container>
         <Routes>
           <Route path="/turn" element={<TurnPage />} />
+          <Route path="result" element={<ResultPage />} />
         </Routes>
       </Container>
     </>
