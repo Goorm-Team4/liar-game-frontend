@@ -4,6 +4,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import { Route, Routes } from "react-router-dom";
 
 import TurnPage from "./pages/TurnPage";
+import ResistPage from "./pages/ResistPage";
 import FinalDebatePage from "./pages/FinalDebatePage";
 
 const Container = styled.div`
@@ -26,6 +27,7 @@ const App = () => {
       <Container>
         <Routes>
           <Route path="/turn" element={<TurnPage />} />
+          <Route path="/resist" element={<ResistPage />} />
           <Route path="/debate" element={<FinalDebatePage />} />
         </Routes>
       </Container>
