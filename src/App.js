@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 
 import TurnPage from "./pages/TurnPage";
 import ResultPage from "./pages/ResultPage";
+import ResistPage from "./pages/ResistPage";
+import FinalDebatePage from "./pages/FinalDebatePage";
 
 const Container = styled.div`
   width: 100%;
@@ -27,6 +29,8 @@ const App = () => {
         <Routes>
           <Route path="/turn" element={<TurnPage />} />
           <Route path="result" element={<ResultPage />} />
+          <Route path="/resist" element={<ResistPage />} />
+          <Route path="/debate" element={<FinalDebatePage />} />
         </Routes>
       </Container>
     </>
