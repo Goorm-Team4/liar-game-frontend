@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ChatInput from '../components/chat/ChatInput';
 
 import char1 from "../assets/images/char1.png";
 
@@ -8,42 +9,40 @@ const ResistPage = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력으로 제한
     const isLiar = true; // 더미
 
-  return (
-    <PageContainer>
-        <SectionContainer>
+    const handleSendMessage = (message) => {
+        if (isLiar && !hasSubmitted) {
+            setLiarInput(message); 
+            setHasSubmitted(true);
+        }
+    };
 
-            <HeaderContainer>
-                <LiarAnnouncement>닉네임은 라이어였습니다!</LiarAnnouncement>
-                <Title>최후의 저항</Title>
-                <Timer>10</Timer>
-            </HeaderContainer>
+    return (
+        <PageContainer>
+            <SectionContainer>
 
-            <PlayerContainer>
-                <Player>
-                    <Character src={char1} alt="Liar" />
-                    <Nickname>라이어</Nickname>
-                    <Chat>{liarInput || "..."}</Chat>
-                </Player>
-            </PlayerContainer>
+                <HeaderContainer>
+                    <LiarAnnouncement>닉네임은 라이어였습니다!</LiarAnnouncement>
+                    <Title>최후의 저항</Title>
+                    <Timer>10</Timer>
+                </HeaderContainer>
 
-            <ChatInputContainer>
+                <PlayerContainer>
+                    <Player>
+                        <Character src={char1} alt="Liar" />
+                        <Nickname>라이어</Nickname>
+                        <Chat>{liarInput}</Chat>
+                    </Player>
+                </PlayerContainer>
+
                 <ChatInput
+                    onSendMessage={handleSendMessage}
                     placeholder={isLiar ? "정답을 입력해주세요" : "라이어만 입력 가능합니다"}
-                    value={liarInput}
-                    onChange={(e) => setLiarInput(e.target.value)}
                     disabled={!isLiar || hasSubmitted}
-                 />
-                <SendButton 
-                    onClick={() => setHasSubmitted(true)} // 한번만 입력 가능
-                    disabled={!isLiar || hasSubmitted}
-                >
-                    전송
-                </SendButton>
-            </ChatInputContainer>
+                />
 
-        </SectionContainer>
-    </PageContainer>
-  );
+            </SectionContainer>
+        </PageContainer>
+    );
 };
 
 export default ResistPage;
@@ -140,35 +139,35 @@ const Nickname = styled.p`
     margin-top: 2.5vh;
 `;
 
-const ChatInputContainer = styled.div`
-    flex: 0;
-    display: flex;
-    gap: 1vh;
-`;
+// const ChatInputContainer = styled.div`
+//     flex: 0;
+//     display: flex;
+//     gap: 1vh;
+// `;
 
-const ChatInput = styled.input`
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 2vh;
-    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
+// const ChatInput = styled.input`
+//     flex: 1;
+//     padding: 8px 12px;
+//     border: 1px solid #ddd;
+//     border-radius: 4px;
+//     font-size: 2vh;
+//     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
 
-    &::placeholder {
-        color: ${({ disabled }) => (disabled ? "#aaa" : "#888")};
-    }
-`;
+//     &::placeholder {
+//         color: ${({ disabled }) => (disabled ? "#aaa" : "#888")};
+//     }
+// `;
 
-const SendButton = styled.button`
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    font-size: 2vh;
-    background-color: ${({ disabled }) => (disabled ? "#ddd" : "#3498db")};
-    color: ${({ disabled }) => (disabled ? "#aaa" : "#ffffff")};
-    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+// const SendButton = styled.button`
+//     padding: 8px 16px;
+//     border: none;
+//     border-radius: 4px;
+//     font-size: 2vh;
+//     background-color: ${({ disabled }) => (disabled ? "#ddd" : "#3498db")};
+//     color: ${({ disabled }) => (disabled ? "#aaa" : "#ffffff")};
+//     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
-    &:hover {
-        background-color: ${({ disabled }) => (disabled ? "#ddd" : "#2980b9")};
-    }
-`;
+//     &:hover {
+//         background-color: ${({ disabled }) => (disabled ? "#ddd" : "#2980b9")};
+//     }
+// `;

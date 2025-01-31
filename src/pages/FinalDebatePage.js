@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import useAutoScroll from "../hooks/useAutoScroll";
+import ChatInput from "../components/chat/ChatInput";
 
 import char1 from "../assets/images/char1.png";
 import char2 from "../assets/images/char2.png";
@@ -18,31 +19,20 @@ const FinalDebatePage = () => {
 
   const userId = 99;
 
-  const [message, setMessage] = useState(""); 
   const [isMuted, setIsMuted] = useState(false); // 도배 제재 
   const [warningMsg, setWarningMsg] = useState(false); // 도배 경고 메세지
   const sendHistory = useRef([]); // 입력 시간 기록
 
   const chatEndRef = useAutoScroll(messages);
 
-  const handleInputChange = (e) => {
-    if (isMuted) return; // 도배 제재 시 입력 불가
-
-    let text = e.target.value;
-    if (text.length > 100) { // 100자 제한
-      text = text.slice(0, 100);
-    }
-    setMessage(text);
-  };
-
-  
-  const handleSendMessage = () => {
-    if (!isMuted && message.trim() !== "") {
+  const handleSendMessage = (message) => {
+      if (isMuted) return;
+      
+      // 채팅 목록 업데이트
       setMessages((prev) => [
         ...prev,
-        { senderId: userId, name: "노래하는 달팽이", avatar: char4, message: message.trim() },
+        { senderId: userId, name: "노래하는 달팽이", avatar: char4, message: message },
       ]);
-      setMessage(""); // 메세지 전송 후 입력창 초기화
       
       // 현재 시간 기록
       const now = Date.now();
@@ -56,7 +46,6 @@ const FinalDebatePage = () => {
       if (sendHistory.current.length >= 6) {
         triggerMute();
       }
-    }
   };
   
   const triggerMute = () => {
@@ -104,16 +93,12 @@ const FinalDebatePage = () => {
 
         {warningMsg && <WarningMsg>도배 감지로 인해 10초간 채팅이 제한됩니다.</WarningMsg>}
 
-        <ChatInputContainer>
-          <ChatInput 
-            type="text"
-            value={message}
-            onChange={handleInputChange}
-            placeholder={isMuted ? "도배 감지로 인해 입력이 제한됩니다." : "메세지를 입력하세요."}
-            disabled={isMuted}
-          />
-          <SendButton onClick={handleSendMessage} disabled={isMuted}>전송</SendButton>
-        </ChatInputContainer>
+        <ChatInput 
+          onSendMessage={handleSendMessage}
+          placeholder={isMuted ? "도배 감지로 인해 입력이 제한됩니다." : "메세지를 입력하세요."}
+          disabled={isMuted}
+        />
+          
       </SectionContainer>
     </PageContainer>
   );
@@ -194,35 +179,6 @@ const Message = styled.div`
     border-radius: 1vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: ${({ myChat }) => (myChat ? "right" : "left")};
-`;
-
-const ChatInputContainer = styled.div`
-    flex: 0;
-    display: flex;
-    gap: 1vh;
-`;
-
-const ChatInput = styled.input`
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 2vh;
-    cursor: text;
-`;
-
-const SendButton = styled.button`
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    font-size: 2vh;
-    background-color: ${({ disabled }) => (disabled ? "#ddd" : "#3498db")};
-    color: ${({ disabled }) => (disabled ? "#aaa" : "#ffffff")};
-    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-    
-    &:hover {
-        background-color: ${({ disabled }) => (disabled ? "#ddd" : "#2980b9")};
-    }
 `;
 
 const WarningMsg = styled.p`
