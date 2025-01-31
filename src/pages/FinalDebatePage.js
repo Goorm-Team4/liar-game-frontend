@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import useAutoScroll from "../hooks/useAutoScroll";
 
 import char1 from "../assets/images/char1.png";
 import char2 from "../assets/images/char2.png";
@@ -21,6 +22,8 @@ const FinalDebatePage = () => {
   const [isMuted, setIsMuted] = useState(false); // 도배 제재 
   const [warningMsg, setWarningMsg] = useState(false); // 도배 경고 메세지
   const sendHistory = useRef([]); // 입력 시간 기록
+
+  const chatEndRef = useAutoScroll(messages);
 
   const handleInputChange = (e) => {
     if (isMuted) return; // 도배 제재 시 입력 불가
@@ -96,6 +99,7 @@ const FinalDebatePage = () => {
               )}
             </ChatBubble>
           ))}
+          <div ref={chatEndRef} />
         </ChatContainer>
 
         {warningMsg && <WarningMsg>도배 감지로 인해 10초간 채팅이 제한됩니다.</WarningMsg>}
