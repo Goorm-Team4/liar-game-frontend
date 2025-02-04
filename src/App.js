@@ -3,6 +3,9 @@ import styled from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
 import { Route, Routes } from "react-router-dom";
 
+import MainPage from "./pages/MainPage";
+import RoomPage from "./pages/RoomPage";
+import RolePage from "./pages/RolePage";
 import TurnPage from "./pages/TurnPage";
 import ResultPage from "./pages/ResultPage";
 import ResistPage from "./pages/ResistPage";
@@ -27,6 +30,9 @@ const App = () => {
       <GlobalStyle />
       <Container>
         <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/room" element={<RoomPage />} />
+          <Route path="/role" element={<RolePage />} />
           <Route path="/turn" element={<TurnPage />} />
           <Route path="result" element={<ResultPage />} />
           <Route path="/resist" element={<ResistPage />} />
