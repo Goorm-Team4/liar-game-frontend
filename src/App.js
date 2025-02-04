@@ -7,6 +7,7 @@ import MainPage from "./pages/MainPage";
 import RoomPage from "./pages/RoomPage";
 import RolePage from "./pages/RolePage";
 import TurnPage from "./pages/TurnPage";
+import VotePage from "./pages/VotePage";
 import ResultPage from "./pages/ResultPage";
 import ResistPage from "./pages/ResistPage";
 import FinalDebatePage from "./pages/FinalDebatePage";
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/room" element={<RoomPage />} />
           <Route path="/role" element={<RolePage />} />
           <Route path="/turn" element={<TurnPage />} />
+          <Route path="/vote" element={<VotePage />} />
           <Route path="result" element={<ResultPage />} />
           <Route path="/resist" element={<ResistPage />} />
           <Route path="/debate" element={<FinalDebatePage />} />

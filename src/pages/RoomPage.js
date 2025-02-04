@@ -68,6 +68,7 @@ const SectionContainer = styled.div`
     width: 100%;
     padding: 9vh;
 `;
+
 const ContentContainer = styled.div`
     font-weight: 700;
     text-align: center;
