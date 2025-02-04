@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import Timer from '../components/Timer';
 import ChatInput from '../components/chat/ChatInput';
 import TypingIndicator from '../components/chat/TypingIndicator';
 
@@ -86,7 +87,7 @@ const TurnPage = () => {
                     <TeamName>라이어</TeamName>
                     <Keyword>빵</Keyword>
                     <Instruction>단어에 대해서 설명해주세요</Instruction>
-                    <Timer>30</Timer>
+                    <Timer initTime={10} onTimeUp={moveToNextPlayer} />
                 </TeamInfoContainer>
 
                 <PlayerContainer>
@@ -149,13 +150,6 @@ const Instruction = styled.p`
     font-size: 3vh;
     font-weight: 700;
     line-height: 4vh;
-`;
-
-const Timer = styled.div`
-    margin-top: 2.5vh;
-    font-size: 4vh;
-    line-height: 5vh;
-    color: #000000;
 `;
 
 const PlayerContainer = styled.div`
