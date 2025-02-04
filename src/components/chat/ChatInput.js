@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
+const ChatInput = ({ onSendMessage, onTyping, disabled, placeholder }) => {
     const [message, setMessage] = useState("");
     const [isComposing, setIsComposing] = useState(false); // 중복 전송 방지
     
@@ -13,6 +13,7 @@ const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
           text = text.slice(0, 100); // 100자 제한
         }
         setMessage(text);
+        if (onTyping) onTyping(text);
     };
 
     // 메시지 전송 핸들러
@@ -20,6 +21,7 @@ const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
         if (!disabled && message.trim() !== "") {
             onSendMessage(message.trim()); // 메세지 전송
             setMessage("");
+            if (onTyping) onTyping("");
         }
     };
 
