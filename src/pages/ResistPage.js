@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Timer from '../components/Timer';
 import ChatInput from '../components/chat/ChatInput';
+import TypingIndicator from '../components/chat/TypingIndicator';
 
 import char1 from "../assets/images/char1.png";
 
@@ -11,13 +12,32 @@ const ResistPage = () => {
     const navigate = useNavigate();
     const [liarInput, setLiarInput] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력으로 제한
-    const isLiar = true; // 더미
+    const [timerPause, setTimerPause] = useState(false);
+    const [isTyping, setIsTyping] = useState(false);
+    
+    // 더미
+    const isLiar = true;
+    const keyword = "123";
+
 
     const handleSendMessage = (message) => {
         if (isLiar && !hasSubmitted) {
+            setTimerPause(true);
             setLiarInput(message); 
             setHasSubmitted(true);
+
+            setTimeout(() => {
+                if (message.trim() === keyword) {
+                    navigate("/result", { state: { winner: "liar" }});
+                } else {
+                    navigate("/result", { state: { winner: "citizen" }});
+                }
+            }, 1000); // 1초 후 이동
         }
+    };
+
+    const handleTyping = (text) => {
+        if (isLiar) { setIsTyping(text.length > 0); }
     };
 
     return (
@@ -27,19 +47,20 @@ const ResistPage = () => {
                 <HeaderContainer>
                     <LiarAnnouncement>닉네임은 라이어였습니다!</LiarAnnouncement>
                     <Title>최후의 저항</Title>
-                    <Timer initTime={10} onTimeUp={() => navigate("/result")} />
+                    <Timer initTime={10} onTimeUp={() => navigate("/result", { state: { winner: "citizen" }})} timerPause={timerPause} />
                 </HeaderContainer>
 
                 <PlayerContainer>
                     <Player>
                         <Character src={char1} alt="Liar" />
                         <Nickname>라이어</Nickname>
-                        <Chat>{liarInput}</Chat>
+                        <Chat>{ isTyping ? <TypingIndicator /> : liarInput}</Chat>
                     </Player>
                 </PlayerContainer>
 
                 <ChatInput
                     onSendMessage={handleSendMessage}
+                    onTyping={handleTyping}
                     placeholder={isLiar ? "정답을 입력해주세요" : "라이어만 입력 가능합니다"}
                     disabled={!isLiar || hasSubmitted}
                 />
