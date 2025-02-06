@@ -1,7 +1,10 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useAutoScroll from "../hooks/useAutoScroll";
+
 import ChatInput from "../components/chat/ChatInput";
+import Timer from "../components/Timer";
 
 import char1 from "../assets/images/char1.png";
 import char2 from "../assets/images/char2.png";
@@ -17,6 +20,7 @@ const FinalDebatePage = () => {
     { senderId: 3, name: "물먹는 버섯", avatar: char3, message: "햄부기햄북 햄북어 햄북스딱스 함부르크햄부가우가 햄비기햄부거 햄부가티햄부기온앤 온 을 차려오거라  햄부기햄북 햄북어 햄북스딱스 함부르크햄부가우가 햄비기햄부거 햄부가티햄부기온앤 온을 차려오라고 하지않앗느냐." },
   ]);
 
+  const navigate = useNavigate();
   const userId = 99;
 
   const [isMuted, setIsMuted] = useState(false); // 도배 제재 
@@ -65,7 +69,7 @@ const FinalDebatePage = () => {
       <SectionContainer>
         <HeaderContainer>
           <Title>최후 변론</Title>
-          <Timer>30</Timer>
+          <Timer initTime={30} onTimeUp={() => navigate("/ynVote")} />
         </HeaderContainer>
 
         <ChatContainer>
@@ -128,13 +132,6 @@ const HeaderContainer = styled.div`
 
 const Title = styled.h1`
     font-size: 3vh;
-`;
-
-const Timer = styled.div`
-    margin-top: 2.5vh;
-    font-size: 4vh;
-    line-height: 5vh;
-    color: #000000;
 `;
 
 const ChatContainer = styled.div`

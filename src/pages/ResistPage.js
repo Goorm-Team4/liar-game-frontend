@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Timer from '../components/Timer';
 import ChatInput from '../components/chat/ChatInput';
 
 import char1 from "../assets/images/char1.png";
 
 const ResistPage = () => {
+    const navigate = useNavigate();
     const [liarInput, setLiarInput] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력으로 제한
     const isLiar = true; // 더미
@@ -23,7 +27,7 @@ const ResistPage = () => {
                 <HeaderContainer>
                     <LiarAnnouncement>닉네임은 라이어였습니다!</LiarAnnouncement>
                     <Title>최후의 저항</Title>
-                    <Timer>10</Timer>
+                    <Timer initTime={10} onTimeUp={() => navigate("/result")} />
                 </HeaderContainer>
 
                 <PlayerContainer>
@@ -76,13 +80,6 @@ const LiarAnnouncement= styled.h1`
 const Title = styled.h1`
     font-size: 3vh;
     color: #FF0000
-`;
-
-const Timer = styled.div`
-    margin-top: 2.5vh;
-    font-size: 4vh;
-    line-height: 5vh;
-    color: #000000;
 `;
 
 const PlayerContainer = styled.div`

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
+import Timer from '../components/Timer';
 import ChatInput from '../components/chat/ChatInput';
 import TypingIndicator from '../components/chat/TypingIndicator';
 
@@ -9,74 +11,87 @@ import char2 from "../assets/images/char2.png";
 import char3 from "../assets/images/char3.png";
 import char4 from "../assets/images/char4.png";
 
-const TurnPage = () => {
-    // 플레이어 더미
-    const [players, setPlayers] = useState([
-        { id: 1, name: "산책하는 노루", avatar: char1, message: "" },
-        { id: 2, name: "흥청망청 코끼리", avatar: char2, message: "" },
-        { id: 3, name: "물먹는 버섯", avatar: char3, message: "" },
-        { id: 4, name: "노래하는 달팽이", avatar: char4, message: "" },
-    ]);
+// 플레이어 더미
+const dummyPlayers = [
+    { id: 1, name: "산책하는 노루", avatar: char1, message: "" },
+    { id: 2, name: "흥청망청 코끼리", avatar: char2, message: "" },
+    { id: 3, name: "물먹는 버섯", avatar: char3, message: "" },
+    { id: 4, name: "노래하는 달팽이", avatar: char4, message: "" },
+];
 
-    const userId = 4; // 임의 본인 id
-    const [availablePlayers, setAvailablePlayers] = useState([...players]);
-    const [currentPlayer, setCurrentPlayer] = useState(null); // 현재 턴인 플레이어
-    const [myTurn, setMyTurn] = useState(false); // 현재 턴인지 확인
+const TurnPage = () => {
+    const navigate = useNavigate();
+
+    const [players, setPlayers] = useState(dummyPlayers);
+    const [currentTurn, setCurrentTurn] = useState(0); // 현재 턴
+    const [timerPause, setTimerPause] = useState(false);
+    const [currentPlayer, setCurrentPlayer] = useState(null);
     const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력 가능
     const [isTyping, setIsTyping] = useState(false); // 입력 중인지
+    const [resetTrigger, setResetTrigger] = useState(0);
 
-    // 게임 시작 시 랜덤 턴 배정
+    
+    // 랜덤 턴
+    const [turnOrder, setTurnOrder] = useState(() => {
+        const randomOrder = [...players].sort(() => Math.random() - 0.5);
+        return randomOrder;
+    });
+    
+    const myTurn = true;
+    // const myId = 1;
+    // const myTurn = turnOrder[currentTurn].id === myId;
+
+    // currentPlayer 업데이트
     useEffect(() => {
-        selectRandomPlayer();
-    }, []);
-
-    // 랜덤 플레이어 선택
-    const selectRandomPlayer = () => {
-        if (availablePlayers.length === 0) {
-            setAvailablePlayers([...players]);
+        if (turnOrder.length > 0) {
+            setCurrentPlayer(players.find(player => player.id === turnOrder[currentTurn]?.id) || null);
+            console.log("현재 플레이어 정보:", currentPlayer);
         }
+    }, [players, currentTurn]);
 
-        const randomIdx = Math.floor(Math.random() * availablePlayers.length);
-        const selectedPlayer = availablePlayers[randomIdx];
 
-        setCurrentPlayer(selectedPlayer);
-        setMyTurn(selectedPlayer.id === userId);
-        setAvailablePlayers((prev) => prev.filter((p) => p.id !== selectedPlayer.id));
+    // 모든 플레이어 턴 끝나면 다음 페이지 이동
+    useEffect(() => {
+        if (0 < turnOrder.length && turnOrder.length <= currentTurn) {
+            navigate("/vote");
+        }
+    }, [currentTurn, turnOrder.length, navigate]);
+
+    // 다음 턴 이동
+    const nextTurn = () => {
+        setTimerPause(false);
+        setHasSubmitted(false); 
+        setCurrentTurn(prev => (prev !== null ? prev + 1 : 0));
+        setResetTrigger(prev => prev + 1); // 트리거 값 변경하여 타이머 재시작
     };
 
+    // 메세지 전송 & 다음 턴 이동
     const handleSendMessage = (message) => {
-        if (myTurn && !hasSubmitted) {
-            setPlayers((prev) =>
-                prev.map((player) =>
-                    player.id === currentPlayer.id ? { ...player, message } : player
-                )
+        if (!message.trim() || hasSubmitted) return;
+
+        setHasSubmitted(true);
+        setTimerPause(true); // 타이머 카운트 정지
+
+        setPlayers((prev) => {
+            const updatedPlayer = prev.map((player) => 
+                player.id === currentPlayer?.id? {...player, message} : player
             );
+            setCurrentPlayer(updatedPlayer.find(player => player.id === currentPlayer?.id));
+            return updatedPlayer;
+        });
 
-            setCurrentPlayer((prev) => ({ ...prev, message }));
-            setHasSubmitted(true);
-            setIsTyping(false);
-            moveToNextPlayer();
-        }
-    };
-
-      // 다음 플레이어로 랜덤 선택
-    const moveToNextPlayer = () => {
+        // 메세지 2초 렌더링 후 다음 턴으로 이동
         setTimeout(() => {
-        setHasSubmitted(false);
-        selectRandomPlayer();
-        }, 1000);
+            setTimerPause(false);
+            nextTurn();
+        }, 2000);
+
     };
 
     // 입력 감지
     const handleTyping = (text) => {
-        if (myTurn) {
-            setIsTyping(text.length > 0);
-        }
+        if (myTurn) { setIsTyping(text.length > 0); }
     };
-
-    if (!currentPlayer) {
-        return <div>로딩 중...</div>;
-    }
 
     return (
         <PageContainer>
@@ -86,17 +101,19 @@ const TurnPage = () => {
                     <TeamName>라이어</TeamName>
                     <Keyword>빵</Keyword>
                     <Instruction>단어에 대해서 설명해주세요</Instruction>
-                    <Timer>30</Timer>
+                    <Timer initTime={10} onTimeUp={nextTurn} timerPause={timerPause} resetTrigger={resetTrigger} />
                 </TeamInfoContainer>
 
                 <PlayerContainer>
-                    <Player>
-                        <Character src={currentPlayer.avatar} alt={currentPlayer.name} />
-                        <Nickname>{currentPlayer.name}</Nickname>
-                        <Chat>
-                            {myTurn && isTyping ? <TypingIndicator /> : currentPlayer.message || <TypingIndicator />}
-                        </Chat>
-                    </Player>
+                    {currentPlayer && (
+                        <Player>
+                            <Character src={currentPlayer.avatar} alt={currentPlayer.name} />
+                            <Nickname>{currentPlayer.name}</Nickname>
+                            <Chat>
+                                { isTyping ? <TypingIndicator /> : currentPlayer?.message }
+                            </Chat>
+                        </Player>
+                    )}
                 </PlayerContainer>
 
                 <ChatInput
@@ -149,13 +166,6 @@ const Instruction = styled.p`
     font-size: 3vh;
     font-weight: 700;
     line-height: 4vh;
-`;
-
-const Timer = styled.div`
-    margin-top: 2.5vh;
-    font-size: 4vh;
-    line-height: 5vh;
-    color: #000000;
 `;
 
 const PlayerContainer = styled.div`
