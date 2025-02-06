@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const Timer = ({ initTime = 30, onTimeUp }) => {
+const Timer = ({ initTime, onTimeUp, timerPause, resetTrigger = null }) => {
     const [time, setTime] = useState(initTime);
 
+    // resetTrigger 있는 경우만 타이머 리셋 (턴 페이지)
     useEffect(() => {
-        if (time <= 0) {
-            onTimeUp(); // 시간이 끝나면 부모 컴포넌트에서 처리
+        if (resetTrigger !== null) {
+            setTime(initTime);
+        }
+    }, [resetTrigger]);
+
+    useEffect(() => {
+        if (timerPause) return;
+        if (time === 0) {
+            onTimeUp();
             return;
         }
-
-        const timer = setInterval(() => {
-            setTime((prev) => (prev > 0 ? prev - 1 : 0));
+        const interval = setInterval(() => {
+            setTime((prev) => prev - 1);
         }, 1000);
 
-        return () => clearInterval(timer);
-    }, [time, onTimeUp]);
+        return () => clearInterval(interval);
+    }, [time, timerPause]);
 
     return (
         <TimerContainer>
