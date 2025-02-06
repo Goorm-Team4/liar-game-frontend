@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const Timer = ({ initTime, onTimeUp, timerPause, resetTrigger = null }) => {
+const Timer = ({ initTime, onTimeUp, timerPause = false, resetTrigger = null }) => {
     const [time, setTime] = useState(initTime);
 
     // resetTrigger 있는 경우만 타이머 리셋 (턴 페이지)
@@ -13,6 +13,7 @@ const Timer = ({ initTime, onTimeUp, timerPause, resetTrigger = null }) => {
 
     useEffect(() => {
         if (timerPause) return;
+        
         if (time === 0) {
             onTimeUp();
             return;
