@@ -9,5 +9,14 @@
 
   "rules": {
     "no-unused-vars": ["error"]
+  },
+
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx"]
+      }
+    }
   }
 }
