@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es2017": true,
+    "node": true
+  },
+
+  "extends": ["airbnb-base", "plugin:prettier/recommended", "prettier"],
+
+  "rules": {
+    "no-unused-vars": ["error"]
+  },
+
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}
