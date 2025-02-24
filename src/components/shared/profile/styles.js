@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const ImgBox = styled.div`
-  background-color: pink;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
