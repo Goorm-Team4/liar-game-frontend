@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const Auth = () => {
   const navigate = useNavigate();
 
-  const code = new URL(window.location.href).searchParams.get('code');
-
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('accessToken');
     localStorage.setItem('accessToken', code);
