@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BaseButton from '../../components/shared/button/Button'
+import Logo from '../../components/shared/logo/LogoBox'
 
 function test() {
   return (
@@ -13,6 +14,10 @@ function test() {
       <BaseButton text="테스트입니다" size="large" color="red"/>
       <BaseButton text="테스트입니다" size="large" bgColor={"green"}/>
       <BaseButton text="테스트입니다" size="large" bgColor={"purple"}/>
+      <Logo size="extra-small"/>
+      <Logo size="small"/>
+      <Logo size="medium"/>
+      <Logo size="large"/>
     </TestContainer>
   )
 }

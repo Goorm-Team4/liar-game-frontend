@@ -1,12 +1,12 @@
 import React from 'react'
-import { LogoBox } from './styles';
+import { LogoImg } from './styles';
 import logo from '../../../assets/images/LiarTalk_logo.jpg'
 
-function LogoImg({ size }) {
+function LogoBox({size}) {
   return (
-    <LogoBox size={size}>
+    <LogoImg size={size}>
       <img src={logo} />
-    </LogoBox>
+    </LogoImg>
   )
 }
 

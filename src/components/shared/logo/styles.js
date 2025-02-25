@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const LogoBox = styled.div`
+export const LogoImg = styled.div`
   ${({ size }) => {
     switch (size) {
       case "extra-small":
