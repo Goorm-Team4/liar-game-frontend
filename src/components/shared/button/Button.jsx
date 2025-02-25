@@ -1,12 +1,11 @@
-import React from 'react'
-import { ButtonBox } from './styles'
+import { ButtonBox } from './styles';
 
-function Button({ size, color, bgColor, text }) {
+function Button({ size, color, children, onClick }) {
   return (
-    <ButtonBox size={size} color={color} bgColor={bgColor}>
-      {text}
+    <ButtonBox size={size} color={color} onClick={onClick}>
+      {children}
     </ButtonBox>
-  )
+  );
 }
 
 export default Button;
