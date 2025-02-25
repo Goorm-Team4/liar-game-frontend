@@ -1,13 +1,13 @@
 import { ButtonBox, TitleBox, HeaderContainer } from './styles';
 import Button from '../button/Button';
 
-const Header = ({ isLogo, title }) => {
+const Header = ({ icon, title }) => {
   return (
     <HeaderContainer>
-      {isLogo && <Logo />}
-      {!isLogo && (
+      {icon === 'logo' && <Logo />}
+      {icon === 'button' && (
         <ButtonBox>
-          <Button size="extra-small">뒤로</Button>
+          <Button size="extra-small" color="white">{`<`}</Button>
         </ButtonBox>
       )}
       <TitleBox>{title}</TitleBox>
