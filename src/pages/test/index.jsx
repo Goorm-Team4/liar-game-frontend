@@ -1,6 +1,6 @@
 import React from 'react'
-import BaseButton from '../../components/shared/button'
 import styled from 'styled-components'
+import BaseButton from '../../components/shared/button/Button'
 
 function test() {
   return (

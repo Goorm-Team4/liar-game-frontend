@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Button = styled.button`
+export const ButtonBox = styled.button`
   ${({ size }) => {
     switch (size) {
       case "extra-small":
