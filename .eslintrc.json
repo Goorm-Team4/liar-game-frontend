@@ -5,13 +5,25 @@
     "node": true
   },
 
-  "extends": ["airbnb-base", "plugin:prettier/recommended", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+
+  "plugins": ["react", "import"],
 
   "rules": {
-    "no-unused-vars": ["error"]
+    "no-unused-vars": ["error"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
 
   "settings": {
+    "react": {
+      "version": "detect"
+    },
+
     "import/resolver": {
       "alias": {
         "map": [["@", "./src"]],
