@@ -1,5 +1,5 @@
 import { ButtonBox, TitleBox, HeaderContainer } from './styles';
-import Button from '../button/Button';
+import Button from '../button';
 
 const Header = ({ icon, title }) => {
   return (
