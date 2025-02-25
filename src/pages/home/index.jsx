@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { getMyinfo } from '@/api/users';
 import useAuthStore from '@/store/auth';
 import NavBar from '@/components/home/NavBar';
-import { createGame } from '@/api/game';
+import { postCreateRoom } from '@/api/game';
 
 import useUserStore from '@/store/user';
 import { useModalStore } from '@/store/modal';
@@ -26,9 +26,8 @@ const Home = () => {
   const clickCreateRoom = () => {
     if (!user.memberId) return;
 
-    createGame((gameData) => {
-      navigate(`${ROUTE.game}/${gameData.gameId}`);
-    });
+    const roomId = postCreateRoom();
+    console.log(roomId);
   };
 
   const clickLoginButton = () => {
