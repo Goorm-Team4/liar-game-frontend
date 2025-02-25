@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import vars from '../../../styles/vars';
 
-// profileImg style
 export const ImgBox = styled.div`
   background-color: white;
   display: flex;
