@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import KakaoShareButton from '../../components/game/KakaoShareButton';
 
 function test() {
-  return (
-    <TestContainer>
-      <KakaoShareButton />
-    </TestContainer>
-  );
+  return <TestContainer></TestContainer>;
 }
 
 export default test;

@@ -6,6 +6,8 @@ export const ButtonBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 4px;
+  padding: 2px;
 
   pre {
     font-weight: ${vars.fontWeight.medium};
@@ -21,4 +23,8 @@ export const ButtonBox = styled.div`
     color: ${vars.colors.yellow[500]};
     font-size: ${vars.fontSize['1.25x']};
   }
+`;
+
+export const GameProfileContainer = styled.div`
+  background-color: transparent;
 `;
