@@ -1,12 +1,11 @@
-import React from 'react'
-import { Button } from 
+import { ButtonBox } from './styles';
 
-function baseButton({ size, color, bgColor, text }) {
+function Button({ size, color, children, onClick }) {
   return (
-    <Button size={size} color={color} bgColor={bgColor}>
-      {text}
-    </Button>
-  )
+    <ButtonBox size={size} color={color} onClick={onClick}>
+      {children}
+    </ButtonBox>
+  );
 }
 
-export default baseButton
+export default Button;
