@@ -1,34 +1,42 @@
 import styled, { css } from 'styled-components';
+import vars from '../../../styles/vars';
+
+const sizeType = {
+  'large': `width: 280px; height: 52px;`,
+  'medium': `width: 160px; height: 52px;`,
+  'small': `width: 76px; height: 36px; font-size: ${vars.fontSize['0.875x']}`,
+  'extra-small': `width: 24px; height: 24px; border-radius: ${vars.borderRadius.full}; font-size: ${vars.fontSize['0.75x']};`,
+};
+
+const colorType = {
+  blue: `background-color: ${vars.colors.blue[500]}; color: ${vars.colors.white}`,
+  gray: `background-color: ${vars.colors.gray[200]}; color: ${vars.colors.gray[800]}`,
+  white: `background-color: ${vars.colors.white}; color: ${vars.colors.blue[500]}; &:hover {box-shadow: none}`,
+};
 
 export const ButtonBox = styled.button`
-  ${({ size }) => {
-    switch (size) {
-      case "extra-small":
-        return "padding: 0.5vmin 1vmin; font-size: 1vmin;";
-      case "small":
-        return "padding: 1vmin 2vmin; font-size: 1.5vmin;";
-      case "medium":
-        return "padding: 1.5vmin 3vmin; font-size: 2vmin;";
-      case "large":
-        return "padding: 2vmin 4vmin; font-size: 4vmin;";
-      default:
-        return "padding: 1.5vmin 3vmin; font-size: 2vmin;"; // 기본값
-    }
-  }}
-
-  background-color: ${(props) => props.bgColor || "LightGray"};
-  color: ${(props) => props.color || "black"};
-
-  width: fit-content;
+  text-align: center;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
-
+  font-size: ${vars.fontSize['1.25x']};
+  font-weight: ${vars.fontWeight.semibold};
+  border-radius: ${vars.borderRadius['3x']};
   cursor: pointer;
+
   &:hover {
     box-shadow: 0 0 1.5vmin 0 rgba(0, 0, 0, 0.2);
   }
+
   &:active {
     /* background-color: aliceblue; */
   }
-`
+
+  ${({ size, color }) => {
+    const sizeStyle = sizeType[size] || sizeType.large;
+    const colorStyle = colorType[color] || colorType.gray;
+
+    return css`
+      ${sizeStyle};
+      ${colorStyle};
+    `;
+  }}
+`;
