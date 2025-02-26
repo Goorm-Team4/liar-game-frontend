@@ -24,7 +24,7 @@ const colors = {
   green: '#1DD47E',
   violet: '#D2CDFF',
   pink: '#FFD2FF',
-  red: 'EA3936',
+  red: '#EA3936',
 };
 
 const fontSize = {
