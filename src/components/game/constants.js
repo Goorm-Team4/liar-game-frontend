@@ -5,5 +5,7 @@ export const KAKAO_SHARE_BUTTON = {
 
 export const GAME_PROFILE_SIZE = {
   large: '96px;',
+  small: '32px;',
+  extraSmall: '16px;',
   default: '68px;',
 };

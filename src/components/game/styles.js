@@ -28,3 +28,23 @@ export const ButtonBox = styled.div`
 export const GameProfileContainer = styled.div`
   background-color: transparent;
 `;
+
+const VotedPlayerSize = {
+  small: '100px;',
+  extraSmall: '130px;',
+};
+
+export const VotedPlayerContainer = styled.div`
+  background-color: transparent;
+  margin: 4px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  ${({ size }) => {
+    return css`
+      max-width: ${VotedPlayerSize[size]};
+    `;
+  }}
+`;
