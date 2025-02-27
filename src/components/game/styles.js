@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import vars from '../../styles/vars';
 
-export const ButtonBox = styled.div`
+export const ShareLinkBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,4 +68,12 @@ export const GuessContainer = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
+`;
+
+export const ButtonBox = styled.div`
+  margin: 4px;
+  padding: 4px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
 `;
