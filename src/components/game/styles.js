@@ -58,4 +58,14 @@ export const VoteContainer = styled.div`
   gap: 8px;
 `;
 
-export const VoteOption = styled.div``;
+export const VoteOption = styled.div`
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const GuessContainer = styled.div`
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+`;
