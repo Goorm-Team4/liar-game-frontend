@@ -53,6 +53,7 @@ const TestContainer = styled.div`
   margin: 24px;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   padding: 40px;
 `;
 
