@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ChatBubble from '../../components/chat/ChatBubble/index';
 import ChatInput from '../../components/chat/ChatInput';
+import ChatForm from '../../components/chat/ChatForm';
 
 function test() {
   const [message, setMessage] = useState('');
@@ -18,23 +19,31 @@ function test() {
   };
 
   return (
-    <TestContainer>
-      <h1>ChatBubble 테스트</h1>
-      <ChatBubble size="medium" myChat message="안녕하세요!" />
-      <ChatBubble size="medium" myChat={false} message="반갑습니다!" />
+    <>
+      <TestContainer>
+        <h1>ChatBubble 테스트</h1>
+        <ChatBubble size="medium" myChat message="안녕하세요!" />
+        <ChatBubble size="medium" myChat={false} message="반갑습니다!" />
+      </TestContainer>
 
-      <h1 style={{ marginTop: '50px' }}>ChatInput 테스트</h1>
-      <ChatInput
-        value={message}
-        onChange={handleInputChange}
-        onSend={handleSend}
-        placeholder="메시지를 입력하세요."
-        disabled={false}
-      />
-      {lastSentMessage && (
-        <MessageDisplay>마지막 전송 메시지: {lastSentMessage}</MessageDisplay>
-      )}
-    </TestContainer>
+      <TestContainer>
+        <h1>ChatInput 테스트</h1>
+        <ChatInput
+          value={message}
+          onChange={handleInputChange}
+          onSend={handleSend}
+          placeholder="메시지를 입력하세요."
+          disabled={false}
+        />
+        {lastSentMessage && (
+          <MessageDisplay>마지막 전송 메시지: {lastSentMessage}</MessageDisplay>
+        )}
+      </TestContainer>
+
+      <TestContainer>
+        <ChatForm isMyTurn onSendMessage={handleSend} />
+      </TestContainer>
+    </>
   );
 }
 
