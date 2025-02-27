@@ -3,6 +3,8 @@ import { VoteContainer, VoteOption } from './styles';
 import { VOTE_OPTION } from './constants';
 
 const VoteBox = () => {
+  //option.label assets 추가 후 수정 필요
+
   return (
     <VoteContainer>
       {VOTE_OPTION.map((option, index) => (
