@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import RetrunButtons from '../../components/game/ReturnButtons';
 
 function test() {
-  return (
-    <TestContainer>
-      <RetrunButtons />
-    </TestContainer>
-  );
+  return <TestContainer></TestContainer>;
 }
 
 export default test;

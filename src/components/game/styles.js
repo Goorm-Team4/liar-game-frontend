@@ -77,3 +77,14 @@ export const ButtonBox = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 8px;
 `;
+
+export const TimerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: ${vars.fontSize['1.25x']};
+  }
+`;
