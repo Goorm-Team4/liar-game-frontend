@@ -51,6 +51,7 @@ const borderRadius = {
   '2x': '8px',
   '3x': '12px',
   '4x': '16px',
+  '5x': '24px',
   'full': '50%',
 };
 
