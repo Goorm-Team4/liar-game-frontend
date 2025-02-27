@@ -1,18 +1,19 @@
-<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../../components/home/NavBar/index';
+import PlayGuideButton from '../../components/home/PlayGuideButton';
 
 function test() {
   return (
-    <TestContainer>
-      <ContentContainer>
-        <h1>테스트</h1>
-      </ContentContainer>
-      <NavBarContainer>
+    <>
+      <TestContainer>
         <NavBar />
-      </NavBarContainer>
-    </TestContainer>
+      </TestContainer>
+
+      <TestContainer>
+        <PlayGuideButton />
+      </TestContainer>
+    </>
   );
 }
 
@@ -21,13 +22,6 @@ export default test;
 const TestContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-`;
-
-const ContentContainer = styled.div`
-  flex-grow: 1;
-`;
-
-const NavBarContainer = styled.div`
-  margin-top: auto;
+  padding: 40px;
+  align-items: center;
 `;
