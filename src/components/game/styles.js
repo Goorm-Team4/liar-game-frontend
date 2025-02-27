@@ -88,3 +88,46 @@ export const TimerContainer = styled.div`
     font-size: ${vars.fontSize['1.25x']};
   }
 `;
+
+export const Slide = styled.div`
+  background-color: ${vars.colors.white};
+  border-top-left-radius: ${vars.borderRadius['2x']};
+  border-top-right-radius: ${vars.borderRadius['2x']};
+  padding: 16px;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  animation: slide-up 0.5s ease-in-out forwards;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  p {
+    font-size: ${vars.fontSize['1x']};
+    font-weight: ${vars.fontWeight.medium};
+    text-align: center;
+  }
+`;
+
+export const ProfileList = styled.div`
+  margin: 8px;
+  padding: 8px;
+  height: 100%;
+  width: 100%;
+`;
