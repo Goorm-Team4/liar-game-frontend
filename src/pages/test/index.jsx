@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../../components/home/NavBar/index';
