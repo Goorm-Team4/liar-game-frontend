@@ -48,3 +48,14 @@ export const VotedPlayerContainer = styled.div`
     `;
   }}
 `;
+
+export const VoteContainer = styled.div`
+  background-color: transparent;
+  margin: 16px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: reapeat(2, 1fr);
+  gap: 8px;
+`;
+
+export const VoteOption = styled.div``;
