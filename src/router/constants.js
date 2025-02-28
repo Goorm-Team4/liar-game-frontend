@@ -3,4 +3,5 @@ export const ROUTE = {
   auth:'/auth',
   main: '/',
   game: '/game',
+  test: '/test'
 };
