@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 function test() {
@@ -7,8 +8,8 @@ function test() {
 export default test;
 
 const TestContainer = styled.div`
-  margin: 24px;
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  padding: 40px;
+  align-items: center;
 `;
