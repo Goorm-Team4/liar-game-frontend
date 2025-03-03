@@ -4,5 +4,5 @@ export const ROUTE = {
   mypage:'/mypage',
   main: '/',
   game: '/game',
-  test: '/test'
+  test: '/test',
 };
