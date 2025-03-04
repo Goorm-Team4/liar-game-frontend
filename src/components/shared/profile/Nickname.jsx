@@ -1,12 +1,15 @@
+import PropTypes from 'prop-types';
 import { NicknameBox } from './styles';
 
-export const Nickname = ({ nickname, size, color, fontWeight }) => {
+const Nickname = ({ nickname, size, color, fontWeight }) => {
   return (
     <NicknameBox size={size} color={color} fontWeight={fontWeight}>
       {nickname}
     </NicknameBox>
   );
 };
+
+export default Nickname;
 
 Nickname.propTypes = {
   nickname: PropTypes.string.isRequired,

@@ -3,10 +3,32 @@ import styled from 'styled-components';
 import ChatBubble from '../../components/chat/ChatBubble/index';
 import ChatInput from '../../components/chat/ChatInput';
 import ChatForm from '../../components/chat/ChatForm';
+import Chat from '../../components/chat/Chat';
+import Char1 from '../../assets/images/char1.png';
 
 function test() {
   const [message, setMessage] = useState('');
   const [lastSentMessage, setLastSentMessage] = useState('');
+  const dummyMessages = [
+    {
+      id: 1,
+      profileImg: Char1,
+      nickname: "사용자1",
+      message: "안녕하세요!",
+    },
+    {
+      id: 2,
+      profileImg: Char1,
+      nickname: "사용자2",
+      message: "반갑습니다!",
+    },
+    {
+      id: 3,
+      profileImg: Char1,
+      nickname: "사용자3",
+      message: "채팅 테스트 중이에요!",
+    },
+  ];
 
   const handleInputChange = (e) => {
     setMessage(e.target.value);
@@ -42,6 +64,18 @@ function test() {
 
       <TestContainer>
         <ChatForm isMyTurn onSendMessage={handleSend} />
+      </TestContainer>
+
+      <TestContainer>
+        <h1>Chat 테스트</h1>
+        {dummyMessages.map((msg) => (
+          <Chat
+            key={msg.id}
+            profileImg={msg.profileImg}
+            nickname={msg.nickname}
+            message={msg.message}
+          />
+      ))}
       </TestContainer>
     </>
   );
