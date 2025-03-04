@@ -9,17 +9,10 @@ const Nickname = ({ nickname, size, color, fontWeight }) => {
   );
 };
 
-export default Nickname;
-
-Nickname.propTypes = {
-  nickname: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['large', 'medium', 'small', 'default']),
-  color: PropTypes.string,
-  fontWeight: PropTypes.string,
-};
-
 Nickname.defaultProps = {
   size: 'default',
   color: 'black',
   fontWeight: 'medium',
 };
+
+export default Nickname;
