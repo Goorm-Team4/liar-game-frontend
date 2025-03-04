@@ -8,7 +8,7 @@ function ChatForm({ isMyTurn, onSendMessage }) {
 
   const handleSendMessage = () => {
     if (message.trim() !== '') {
-      onSendMessage(message); // Chat.jsx 로 메세지 전달
+      onSendMessage(message);
       setMessage('');
     }
   };

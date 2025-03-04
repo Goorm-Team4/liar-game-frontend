@@ -12,7 +12,7 @@ function ChatInput({ value, onChange, onSend, placeholder, disabled }) {
       !disabled &&
       value.trim() !== ''
     ) {
-      onSend(value); // 메세지 부모로 전달
+      onSend();
     }
   };
 
