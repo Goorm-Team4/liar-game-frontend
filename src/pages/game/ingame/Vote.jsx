@@ -10,28 +10,28 @@ import { useNavigate } from 'react-router-dom';
 // import char6 from '../assets/images/char6.png';
 
 function Vote() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/debate');
-    }, 10000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigate('/debate');
+  //   }, 10000);
 
-    return () => clearTimeout(timer); // 타이머 종료
-  }, [navigate]);
+  //   return () => clearTimeout(timer); // 타이머 종료
+  // }, [navigate]);
 
-  const players = [
-    { id: 1, name: '산책하는 노루', avatar: char1, votes: [char2, char3] },
-    { id: 2, name: '흥청망청 코끼리', avatar: char2, votes: [char4] },
-    { id: 3, name: '물먹는 버섯', avatar: char3, votes: [char5, char6, char1] },
-    { id: 4, name: '노래하는 달팽이', avatar: char4, votes: [] },
-    { id: 5, name: '등반하는 바위', avatar: char5, votes: [] },
-    { id: 6, name: '야자하는 야자나무', avatar: char6, votes: [] },
-  ];
+  // const players = [
+  //   { id: 1, name: '산책하는 노루', avatar: char1, votes: [char2, char3] },
+  //   { id: 2, name: '흥청망청 코끼리', avatar: char2, votes: [char4] },
+  //   { id: 3, name: '물먹는 버섯', avatar: char3, votes: [char5, char6, char1] },
+  //   { id: 4, name: '노래하는 달팽이', avatar: char4, votes: [] },
+  //   { id: 5, name: '등반하는 바위', avatar: char5, votes: [] },
+  //   { id: 6, name: '야자하는 야자나무', avatar: char6, votes: [] },
+  // ];
 
   return (
     <PageContainer>
-      <SectionContainer>
+      {/* <SectionContainer>
         <ContentContainer>
           <span>라이어를 지목해주세요</span>
           <p></p>
@@ -56,7 +56,7 @@ function Vote() {
             </div>
           ))}
         </VoteContainer>
-      </SectionContainer>
+      </SectionContainer> */}
     </PageContainer>
   );
 }

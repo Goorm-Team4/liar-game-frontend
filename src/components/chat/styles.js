@@ -1,19 +1,21 @@
 import styled from 'styled-components';
-import vars from '../../../styles/vars';
+import vars from '../../styles/vars';
 
 export const BubbleContainer = styled.div`
   display: flex;
   flex-direction: ${({ myChat }) => (myChat ? 'row-reverse' : 'row')};
   align-items: flex-start;
   gap: 2vh;
+  position: relative;
 `;
 
 export const ChatLarge = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  left: 0;
+  transform: none;
   min-width: 40vh;
-  height: 26vh;
+  height: 20vh;
+  margin: 10vh 0;
   align-content: center;
   padding: 2vh;
   background-color: ${vars.colors.gray[200]};
