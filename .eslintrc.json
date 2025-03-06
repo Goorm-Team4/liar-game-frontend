@@ -13,6 +13,7 @@
   ],
 
   "plugins": ["react", "import"],
+  "parser": "babel-parser",
 
   "rules": {
     "no-unused-vars": ["error"],
