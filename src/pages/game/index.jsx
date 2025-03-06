@@ -1,4 +1,5 @@
 import { useStepStore } from '../../store/step';
+import { GameLayout } from './styles';
 import Lobby from './Lobby';
 import Role from './Role';
 import Turn from './Turn';
@@ -11,7 +12,7 @@ const Game = () => {
   const { index } = useStepStore((state) => ({ index: state.step }));
 
   return (
-    <>
+    <GameLayout>
       <Step index={0}>
         <Lobby />
       </Step>
@@ -33,7 +34,7 @@ const Game = () => {
       <Step index={6}>
         <Result />
       </Step>
-    </>
+    </GameLayout>
   );
 };
 
