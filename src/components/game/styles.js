@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import vars from '../../styles/vars';
 
 export const ShareLinkBox = styled.div`
@@ -27,6 +27,16 @@ export const ShareLinkBox = styled.div`
 
 export const GameProfileContainer = styled.div`
   background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${({ size }) => {
+    return css`
+      width: ${size};
+      height: ${size};
+    `;
+  }}
 `;
 
 const VotedPlayerSize = {

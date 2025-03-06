@@ -6,10 +6,10 @@ import Timer from '../../components/game/Timer';
 import ChatInput from '../../components/chat/ChatInput';
 // import TypingIndicator from '../../components/chat/TypingIndicator';
 
-// import char1 from '../assets/images/char1.png';
-// import char2 from '../assets/images/char2.png';
-// import char3 from '../assets/images/char3.png';
-// import char4 from '../assets/images/char4.png';
+import char1 from '../../assets/images/char1.png';
+import char2 from '../../assets/images/char2.png';
+import char3 from '../../assets/images/char3.png';
+import char4 from '../../assets/images/char4.png';
 
 // 플레이어 더미
 const dummyPlayers = [

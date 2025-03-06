@@ -1,5 +1,5 @@
-import Timer from '../Timer';
-import { TIMER_OPTION } from './constants';
+import Timer from './Timer';
+import { TIMER_OPTION } from '../../constants/game/constants';
 import { TimerContainer } from './styles';
 
 const TimerBox = ({ index }) => {

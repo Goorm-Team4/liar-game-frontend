@@ -10,6 +10,13 @@ export const GAME_PROFILE_SIZE = {
   default: '68px;',
 };
 
+export const PROFILE_BOX_SIZE = {
+  large: '156px',
+  small: '92px;',
+  extraSmall: '76px;',
+  default: '128px;',
+};
+
 export const VOTE_OPTION = [
   { label: '찬성', targetId: 'agreePlayer' },
   { label: '반대', targetId: 'disagreePlayer' },

@@ -1,5 +1,5 @@
 import { ShareLinkBox } from './styles';
-import { KAKAO_SHARE_BUTTON } from './constants';
+import { KAKAO_SHARE_BUTTON } from '../../constants/game/constants';
 
 const KakaoShareButton = ({ onClick }) => {
   return (
