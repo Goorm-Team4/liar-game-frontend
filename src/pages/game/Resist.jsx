@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Timer from '../../components/Timer';
+import Timer from '../../components/game/Timer';
 import ChatInput from '../../components/chat/ChatInput';
 
-import char1 from '../assets/images/char1.png';
+// import char1 from '../assets/images/char1.png';
 
-const ResistPage = () => {
+const Resist = () => {
   const navigate = useNavigate();
   const [liarInput, setLiarInput] = useState('');
   const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력으로 제한
@@ -49,7 +49,7 @@ const ResistPage = () => {
   );
 };
 
-export default ResistPage;
+export default Resist;
 
 const PageContainer = styled.div`
   display: flex;

@@ -16,9 +16,10 @@ export const VOTE_OPTION = [
 ];
 
 export const TIMER_OPTION = [
-  { index: 1, description: '단어에 대해서 설명해주세요', time: 30 },
-  { index: 2, description: '라이어를 투표해주세요', time: 10 },
-  { index: 3, description: '최후의 변론', time: 30 },
-  { index: 4, description: '찬반 투표', time: 10 },
-  { index: 5, description: '최후의 저항', time: 10 },
+  { index: 1, description: '', time: 10 },
+  { index: 2, description: '단어에 대해서 설명해주세요', time: 30 },
+  { index: 3, description: '라이어를 투표해주세요', time: 10 },
+  { index: 4, description: '최후의 변론', time: 30 },
+  { index: 5, description: '찬반 투표', time: 10 },
+  { index: 6, description: '최후의 저항', time: 10 },
 ];

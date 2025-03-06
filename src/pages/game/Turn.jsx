@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import Timer from '../../components/Timer';
+import Timer from '../../components/game/Timer';
 import ChatInput from '../../components/chat/ChatInput';
-import TypingIndicator from '../../components/chat/TypingIndicator';
+// import TypingIndicator from '../../components/chat/TypingIndicator';
 
-import char1 from '../assets/images/char1.png';
-import char2 from '../assets/images/char2.png';
-import char3 from '../assets/images/char3.png';
-import char4 from '../assets/images/char4.png';
+// import char1 from '../assets/images/char1.png';
+// import char2 from '../assets/images/char2.png';
+// import char3 from '../assets/images/char3.png';
+// import char4 from '../assets/images/char4.png';
 
 // 플레이어 더미
 const dummyPlayers = [
@@ -19,7 +19,7 @@ const dummyPlayers = [
   { id: 4, name: '노래하는 달팽이', avatar: char4, message: '' },
 ];
 
-const TurnPage = () => {
+const Turn = () => {
   const navigate = useNavigate();
 
   const [players, setPlayers] = useState(dummyPlayers);
@@ -118,7 +118,7 @@ const TurnPage = () => {
               <Character src={currentPlayer.avatar} alt={currentPlayer.name} />
               <Nickname>{currentPlayer.name}</Nickname>
               <Chat>
-                {isTyping ? <TypingIndicator /> : currentPlayer?.message}
+                {/* {isTyping ? <TypingIndicator /> : currentPlayer?.message} */}
               </Chat>
             </Player>
           )}
@@ -137,7 +137,7 @@ const TurnPage = () => {
   );
 };
 
-export default TurnPage;
+export default Turn;
 
 const PageContainer = styled.div`
   display: flex;

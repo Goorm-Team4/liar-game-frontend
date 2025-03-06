@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import useTimer from '../../hooks/useTimer';
-import { TIMER_OPTION } from './constants';
+import { TIMER_OPTION } from '../../constants/game/constants';
 
 const Timer = ({
   index,
