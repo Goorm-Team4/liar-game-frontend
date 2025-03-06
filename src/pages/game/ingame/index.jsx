@@ -9,10 +9,13 @@ import Step from '../../../components/game/Step';
 import { useStepStore } from '../../../store/step';
 
 const Ingame = () => {
-  const step = useStepStore((state) => state.step);
+  const { step, nextStep } = useStepStore();
+
+  console.log(step);
+
   return (
     <>
-      <TimerBox index={step} />
+      <TimerBox index={step} onNextStep={nextStep} />
       <Step index={1}>
         <Role />
       </Step>
@@ -26,10 +29,10 @@ const Ingame = () => {
         <FinalDebate />
       </Step>
       <Step index={5}>
-        <Resist />
+        <Vote />
       </Step>
       <Step index={6}>
-        <Result />
+        <Resist />
       </Step>
     </>
   );

@@ -94,8 +94,17 @@ export const TimerContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  p {
+  pre {
+    margin: 4px;
     font-size: ${vars.fontSize['1.25x']};
+    font-weight: ${vars.fontWeight.semibold};
+  }
+
+  p {
+    margin: 4px;
+    padding: 4px;
+    font-size: ${vars.fontSize['1.75x']};
+    font-weight: ${vars.fontWeight.bold};
   }
 `;
 

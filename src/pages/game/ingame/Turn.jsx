@@ -3,7 +3,7 @@ import { Container } from './styles';
 import ChatBubble from '../../../components/chat/ChatBubble';
 import GameProfile from '../../../components/game/GameProfile';
 import ChatForm from '../../../components/chat/ChatForm';
-import { useStepStore } from '../../../store/step';
+import { useTurnStore } from '../../../store/turn';
 
 import char1 from '../../../assets/images/char1.png';
 import char2 from '../../../assets/images/char2.png';
@@ -18,66 +18,56 @@ const dummyPlayers = [
 ];
 
 const Turn = () => {
-  const { nextStep } = useStepStore((state) => state.nextStep); // 전역 상태에서 nextStep 가져오기
-  const [players, setPlayers] = useState(dummyPlayers);
-  const [currentTurn, setCurrentTurn] = useState(0); // 현재 턴
-  const [timerPause, setTimerPause] = useState(false);
-  const [currentPlayer, setCurrentPlayer] = useState(null);
-  const [hasSubmitted, setHasSubmitted] = useState(false); // 채팅 한번만 입력 가능
-  const [lastMessage, setLastMessage] = useState(''); // 마지막 메시지를 저장하기 위한 상태
+  const { turn, incrementTurn, setPlayers } = useTurnStore((state) => ({
+    turn: state.turn,
+    incrementTurn: state.incrementTurn,
+    setPlayers: state.setPlayers,
+  }));
 
-  // 랜덤 턴
-  const [turnOrder, setTurnOrder] = useState(() => {
-    return [...players].sort(() => Math.random() - 0.5);
-  });
+  const [players] = useState(dummyPlayers);
+  const [currentPlayer, setCurrentPlayer] = useState(players[0]);
+  const [lastMessage, setLastMessage] = useState('');
+  const [time, setTime] = useState(30);
+  const [isRunning, setIsRunning] = useState(true);
 
-  // currentPlayer 업데이트
   useEffect(() => {
-    if (turnOrder.length > 0) {
-      setCurrentPlayer(
-        players.find((player) => player.id === turnOrder[currentTurn]?.id) ||
-          null
-      );
-    }
-  }, [players, currentTurn]);
+    setPlayers(dummyPlayers);
+  }, [setPlayers]);
 
-  // 모든 플레이어 턴 끝나면 다음 페이지 이동
   useEffect(() => {
-    if (currentTurn >= players.length) {
-      nextStep(); // 다음 단계로 이동
+    if (players.length > 0) {
+      setCurrentPlayer(players[turn]);
+      setTime(30);
+      setIsRunning(true);
     }
-  }, [currentTurn, players.length, nextStep]);
+  }, [turn, players]);
 
-  // 다음 턴 이동
-  const nextTurn = () => {
-    setTimerPause(false);
-    setHasSubmitted(false);
-    setCurrentTurn((prev) => (prev !== null ? prev + 1 : 0));
+  useEffect(() => {
+    if (isRunning && time > 0) {
+      const interval = setInterval(() => {
+        setTime((prevTime) => prevTime - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    } else if (time === 0) {
+      handleNextTurn();
+    }
+  }, [isRunning, time]);
+
+  const handleNextTurn = () => {
+    incrementTurn();
+    setTime(30);
+    setLastMessage('');
   };
 
-  // 메세지 전송 & 다음 턴 이동
   const handleSendMessage = (message) => {
-    if (!message.trim() || hasSubmitted) return;
+    if (!message.trim()) return;
 
-    setHasSubmitted(true);
-    setTimerPause(true); // 타이머 카운트 정지
-    setLastMessage(message); // 마지막 메시지를 상태로 저장
-
+    setLastMessage(message);
     setPlayers((prev) => {
-      const updatedPlayer = prev.map((player) =>
-        player.id === currentPlayer?.id ? { ...player, message } : player
+      return prev.map((player) =>
+        player.id === currentPlayer.id ? { ...player, message } : player
       );
-      setCurrentPlayer(
-        updatedPlayer.find((player) => player.id === currentPlayer?.id)
-      );
-      return updatedPlayer;
     });
-
-    // 메세지 2초 렌더링 후 다음 턴으로 이동
-    setTimeout(() => {
-      setTimerPause(false);
-      nextTurn();
-    }, 2000);
   };
 
   return (
@@ -91,6 +81,7 @@ const Turn = () => {
         />
       )}
       <ChatForm isMyTurn onSendMessage={handleSendMessage} />
+      <p>남은 시간: {time}초</p> {/* 남은 시간 표시 */}
     </Container>
   );
 };
