@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ProfileImg from '../shared/profile/ProfileImg';
 import Nickname from '../shared/profile/Nickname';
-import ChatBubble from './ChatBubble';
+import ChatBubble from './ChatBubble/ChatBubble';
 
 function Chat({ profileImg, nickname, message }) {
   return (
