@@ -1,19 +1,18 @@
 import Timer from './Timer';
-import { TIMER_OPTION } from '../../constants/game/constants';
 import { TimerContainer } from './styles';
+import { useStepStore } from '../../store/step';
 
 const TimerBox = ({ index }) => {
-  // Timer 문구와, 시간 constants 로 매핑하여 사용
-  // 화면 구현 시 Timer -> hooks 로 바꾸며 수정
-  const timerOption = TIMER_OPTION.find((option) => option.index === index);
-  const description = timerOption
-    ? timerOption.description
-    : '설명이 없습니다.';
+  const { nextStep } = useStepStore();
+
+  if (typeof nextStep !== 'function') {
+    console.error('nextStep is not a function', nextStep);
+    return null;
+  }
 
   return (
     <TimerContainer>
-      <p>{description}</p>
-      <Timer />
+      <Timer index={index} onTimeUp={nextStep} />
     </TimerContainer>
   );
 };

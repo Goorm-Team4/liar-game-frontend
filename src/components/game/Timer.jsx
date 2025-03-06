@@ -8,13 +8,21 @@ const Timer = ({
   timerPause = false,
   resetTrigger = null,
 }) => {
+  if (index < 1 || index > TIMER_OPTION.length) {
+    return <p>유효하지 않은 타이머 인덱스입니다.</p>;
+  }
+
   const { time, description } = TIMER_OPTION[index - 1];
   const currentTime = useTimer(time, onTimeUp, timerPause, resetTrigger);
 
   return (
     <TimerContainer>
-      <pre>{description}</pre>
-      <p>{currentTime}</p>
+      {index !== 1 && (
+        <>
+          <pre>{description}</pre>
+          <p>{currentTime}</p>
+        </>
+      )}
     </TimerContainer>
   );
 };

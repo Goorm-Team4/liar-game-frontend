@@ -13,7 +13,9 @@ const useTimer = (initTime, onTimeUp, timerPause, resetTrigger) => {
     if (timerPause) return;
 
     if (time === 0) {
-      onTimeUp();
+      if (typeof onTimeUp === 'function') {
+        onTimeUp();
+      }
       return;
     }
 
@@ -22,7 +24,7 @@ const useTimer = (initTime, onTimeUp, timerPause, resetTrigger) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [time, timerPause]);
+  }, [time, timerPause, onTimeUp]);
 
   return time;
 };
