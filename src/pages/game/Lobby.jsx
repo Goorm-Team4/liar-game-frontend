@@ -1,4 +1,5 @@
 import { Container, ProfileContainer, LobbyButtonBox } from './styles';
+import { useStepStore } from '../../store/step';
 import GameProfile from '../../components/game/GameProfile';
 import Button from '../../components/shared/button/index';
 import KakaoShareButton from '../../components/game/KakaoShareButton';
@@ -11,6 +12,8 @@ import char5 from '../../assets/images/char5.png';
 import char6 from '../../assets/images/char6.png';
 
 const Lobby = () => {
+  const { nextStep } = useStepStore();
+
   const players = [
     { id: 1, name: '산책하는 노루', avatar: char1 },
     { id: 2, name: '흥청망청 코끼리', avatar: char2 },
@@ -33,7 +36,7 @@ const Lobby = () => {
         ))}
       </ProfileContainer>
       <LobbyButtonBox>
-        <Button size="large" color="blue">
+        <Button size="large" color="blue" onClick={nextStep}>
           시작하기
         </Button>
         <KakaoShareButton />
