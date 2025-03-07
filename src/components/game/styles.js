@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import vars from '../../styles/vars';
 
 export const ShareLinkBox = styled.div`
@@ -27,6 +27,16 @@ export const ShareLinkBox = styled.div`
 
 export const GameProfileContainer = styled.div`
   background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${({ size }) => {
+    return css`
+      width: ${size};
+      height: ${size};
+    `;
+  }}
 `;
 
 const VotedPlayerSize = {
@@ -84,8 +94,17 @@ export const TimerContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  p {
+  pre {
+    margin: 4px;
     font-size: ${vars.fontSize['1.25x']};
+    font-weight: ${vars.fontWeight.semibold};
+  }
+
+  p {
+    margin: 4px;
+    padding: 4px;
+    font-size: ${vars.fontSize['1.75x']};
+    font-weight: ${vars.fontWeight.bold};
   }
 `;
 

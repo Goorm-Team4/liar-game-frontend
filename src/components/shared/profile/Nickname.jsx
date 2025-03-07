@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { NicknameBox } from './styles';
 
 const Nickname = ({ nickname, size, color, fontWeight }) => {
