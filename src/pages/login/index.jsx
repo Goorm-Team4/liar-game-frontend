@@ -7,6 +7,7 @@ const Login = () => {
   const kakaoApiKey = import.meta.env.VITE_KAKAO_API_KEY;
   const redirect_uri = 'http://localhost:3000/auth';
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoLoginURL = `http://43.201.26.110/oauth2/authorization/kakao `;
 
   function kakaoLoginHandle() {
     window.location.href = kakaoURL;

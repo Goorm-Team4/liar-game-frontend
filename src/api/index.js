@@ -3,15 +3,21 @@ import axios from "axios";
 const URL = "";
 
 function apiInstance() {
-  const AxiosInst = axios.create({
+  return axios.create({
     baseURL: URL,
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
   });
-
-  return AxiosInst;
 }
 
+function apiFormInstance() {
+  return axios.create({
+    baseURL: URL,
+    headers: {
+      "Content-type": "multipart/form-data",
+    },
+  });
+}
 
-export default apiInstance;
+export { apiInstance, apiFormInstance };
