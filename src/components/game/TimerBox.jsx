@@ -1,19 +1,35 @@
-import Timer from '../Timer';
-import { TIMER_OPTION } from './constants';
 import { TimerContainer } from './styles';
+import { TIMER_OPTION } from '../../constants/game/constants';
+import useTimer from '../../hooks/useTimer';
+import { useEffect } from 'react';
+import { useTurnStore } from '../../store/turn';
 
-const TimerBox = ({ index }) => {
-  // Timer 문구와, 시간 constants 로 매핑하여 사용
-  // 화면 구현 시 Timer -> hooks 로 바꾸며 수정
-  const timerOption = TIMER_OPTION.find((option) => option.index === index);
-  const description = timerOption
-    ? timerOption.description
-    : '설명이 없습니다.';
+const TimerBox = ({ index, onNextStep }) => {
+  const currentTime = TIMER_OPTION[index - 1];
+  const initialTime = currentTime.time;
+  const description = currentTime.description;
+
+  const { time, startTimer } = useTimer(initialTime, () => {
+    if (index === 2) {
+      const { turn, players } = useTurnStore.getState();
+      if (turn >= players.length) {
+        onNextStep;
+      }
+    } else if (index !== 2) {
+      onNextStep();
+    }
+  });
+
+  useEffect(() => {
+    startTimer();
+  }, [initialTime, startTimer]);
 
   return (
     <TimerContainer>
-      <p>{description}</p>
-      <Timer />
+      <>
+        <pre>{description}</pre>
+        <p>{time}</p>
+      </>
     </TimerContainer>
   );
 };
