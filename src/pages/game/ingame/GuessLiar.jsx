@@ -1,4 +1,4 @@
-import { Container, PlayerContainer, VoteContainer } from './styles';
+import { Container, PlayerContainer, GuessContainer } from './styles';
 import GameProfile from '../../../components/game/GameProfile';
 import VotedPlayer from '../../../components/game/VotedPlayer';
 
@@ -34,7 +34,7 @@ function GuessLiar() {
     <Container>
       <PlayerContainer>
         {players.map((player) => (
-          <VoteContainer key={player.id} onClick={handleClick}>
+          <GuessContainer key={player.id} onClick={handleClick}>
             <GameProfile
               size="default"
               nickname={player.name}
@@ -42,7 +42,7 @@ function GuessLiar() {
               mg={true}
             />
             <VotedPlayer size="small" votes={player.votes} />
-          </VoteContainer>
+          </GuessContainer>
         ))}
       </PlayerContainer>
     </Container>
