@@ -1,7 +1,6 @@
-import React from 'react';
 import { BubbleContainer, ChatLarge, ChatMedium, Message } from './styles';
 
-function ChatBubble({ size, myChat, message }) {
+const ChatBubble = ({ size, myChat, message }) => {
   return (
     <BubbleContainer myChat={myChat}>
       {size === 'large' ? (
@@ -13,6 +12,6 @@ function ChatBubble({ size, myChat, message }) {
       )}
     </BubbleContainer>
   );
-}
+};
 
 export default ChatBubble;

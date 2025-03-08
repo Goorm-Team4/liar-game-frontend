@@ -1,4 +1,4 @@
-import { Container, ChatContainer, InputConatiner } from './styles';
+import { Container, ChatContainer, InputContainer } from './styles';
 import Chat from '../../../components/chat/index';
 
 import char1 from '../../../assets/images/char1.png';
@@ -32,9 +32,9 @@ const Argument = () => {
         <Chat myChat={true} message="이거 마피아게임 아닙니다." />
         <Chat profileImg={char2} nickname="코끼리" message="아 라이어" />
       </ChatContainer>
-      <InputConatiner>
+      <InputContainer>
         <ChatForm isMyTurn={true} />
-      </InputConatiner>
+      </InputContainer>
     </Container>
   );
 };

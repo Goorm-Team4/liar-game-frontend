@@ -58,7 +58,7 @@ export const ChatContainer = styled.div`
   margin-top: 2vh;
 `;
 
-export const InputConatiner = styled.div`
+export const InputContainer = styled.div`
   width: 55vh;
   position: fixed;
   bottom: 0;

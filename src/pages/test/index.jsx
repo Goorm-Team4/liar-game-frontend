@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import Argument from '../game/ingame/Argument';
+import GuessAnswer from '../game/ingame/GuessAnswer';
 
 function test() {
   return (
     <TestContainer>
-      <Argument />
+      <GuessAnswer />
     </TestContainer>
   );
 }
