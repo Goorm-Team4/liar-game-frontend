@@ -1,12 +1,12 @@
 import Role from './Role';
 import Turn from './Turn';
-import Vote from './Vote';
 import FinalDebate from './FinalDebate';
 import Resist from './Resist';
-import Result from './Result';
 import TimerBox from '../../../components/game/TimerBox';
 import Step from '../../../components/game/Step';
 import { useStepStore } from '../../../store/step';
+import GuessLiar from './GuessLiar';
+import Vote from './Vote';
 
 const Ingame = () => {
   const { step, nextStep } = useStepStore();
@@ -23,7 +23,7 @@ const Ingame = () => {
         <Turn />
       </Step>
       <Step index={3}>
-        <Vote />
+        <GuessLiar />
       </Step>
       <Step index={4}>
         <FinalDebate />
