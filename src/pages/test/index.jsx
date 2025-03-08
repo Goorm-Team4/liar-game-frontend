@@ -1,8 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
+import GuessAnswer from '../game/ingame/GuessAnswer';
 
 function test() {
-  return <TestContainer></TestContainer>;
+  return (
+    <TestContainer>
+      <GuessAnswer />
+    </TestContainer>
+  );
 }
 
 export default test;

@@ -31,17 +31,19 @@ export const GameProfileContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  ${({ size }) => {
+  ${({ size, mg }) => {
+    const height = mg ? `${size - 24}px` : `${size}px`;
+
     return css`
       width: ${size};
-      height: ${size};
+      height: ${height};
     `;
   }}
 `;
 
 const VotedPlayerSize = {
   small: '100px;',
-  extraSmall: '130px;',
+  default: '130px;',
 };
 
 export const VotedPlayerContainer = styled.div`
