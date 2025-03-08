@@ -1,8 +1,8 @@
 import { ImgBox } from './styles';
 
-const ProfileImg = ({ size, src }) => {
+const ProfileImg = ({ size, src, hidden }) => {
   return (
-    <ImgBox size={size}>
+    <ImgBox size={size} hidden={hidden}>
       <img src={src} />
     </ImgBox>
   );

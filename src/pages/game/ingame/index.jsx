@@ -1,6 +1,6 @@
 import Role from './Role';
 import Turn from './Turn';
-import FinalDebate from './FinalDebate';
+import Argument from './Argument';
 import Resist from './Resist';
 import TimerBox from '../../../components/game/TimerBox';
 import Step from '../../../components/game/Step';
@@ -26,7 +26,7 @@ const Ingame = () => {
         <GuessLiar />
       </Step>
       <Step index={4}>
-        <FinalDebate />
+        <Argument />
       </Step>
       <Step index={5}>
         <Vote />

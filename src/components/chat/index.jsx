@@ -1,38 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import { ChatContainer, ChatContent } from './styles';
 import ProfileImg from '../shared/profile/ProfileImg';
 import Nickname from '../shared/profile/Nickname';
-import ChatBubble from './ChatBubble/ChatBubble';
+import ChatBubble from './ChatBubble';
 
-function Chat({ profileImg, nickname, message }) {
+function Chat({ profileImg, nickname, message, myChat }) {
   return (
-    <ChatContainer>
-      <ProfileImg size="10vh" src={profileImg} />
+    <ChatContainer myChat={myChat}>
+      <ProfileImg size="10vh" src={profileImg} hidden={myChat} />
 
       <ChatContent>
         <Nickname
           nickname={nickname}
           size="medium"
           color="black"
-          fontWeight="bold"
+          fontWeight="semibold"
         />
-        <ChatBubble size="medium" myChat={false} message={message} />
+        <ChatBubble size="medium" myChat={myChat} message={message} />
       </ChatContent>
     </ChatContainer>
   );
 }
 
 export default Chat;
-
-const ChatContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 3vh;
-`;
-
-const ChatContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-`;
