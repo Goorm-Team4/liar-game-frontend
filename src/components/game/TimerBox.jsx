@@ -1,5 +1,5 @@
 import { TimerContainer } from './styles';
-import { TIMER_OPTION } from '../../constants/game/constants';
+import { TIMER_OPTION } from '../../constants/game';
 import useTimer from '../../hooks/useTimer';
 import { useEffect } from 'react';
 import { useTurnStore } from '../../store/turn';

@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import GuessLiar from '../game/ingame/GuessLiar';
 
 function test() {
-  return <TestContainer></TestContainer>;
+  return (
+    <TestContainer>
+      <GuessLiar />
+    </TestContainer>
+  );
 }
 
 export default test;
