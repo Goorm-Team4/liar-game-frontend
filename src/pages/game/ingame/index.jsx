@@ -6,6 +6,7 @@ import TimerBox from '../../../components/game/TimerBox';
 import Step from '../../../components/game/Step';
 import { useStepStore } from '../../../store/step';
 import GuessLiar from './GuessLiar';
+import Vote from './Vote';
 
 const Ingame = () => {
   const { step, nextStep } = useStepStore();
@@ -28,7 +29,7 @@ const Ingame = () => {
         <FinalDebate />
       </Step>
       <Step index={5}>
-        <GuessLiar />
+        <Vote />
       </Step>
       <Step index={6}>
         <Resist />
