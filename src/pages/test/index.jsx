@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
-import GuessLiar from '../game/ingame/GuessLiar';
+import Argument from '../game/ingame/Argument';
 
 function test() {
   return (
     <TestContainer>
-      <GuessLiar />
+      <Argument />
     </TestContainer>
   );
 }

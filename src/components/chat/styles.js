@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import vars from '../../styles/vars';
 
 export const BubbleContainer = styled.div`
@@ -52,4 +52,19 @@ export const Message = styled.div`
   border-radius: ${vars.borderRadius['3x']};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: ${({ myChat }) => (myChat ? 'right' : 'left')};
+`;
+
+export const ChatContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: ${({ myChat }) => (myChat ? 'flex-end' : 'flex-start')};
+  gap: 2vh;
+`;
+
+export const ChatContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
 `;

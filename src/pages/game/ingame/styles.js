@@ -50,3 +50,17 @@ export const ThumbsIcon = styled.div`
     height: 96px;
   }
 `;
+
+export const ChatContainer = styled.div`
+  width: 55vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+`;
+
+export const InputConatiner = styled.div`
+  width: 55vh;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+`;
