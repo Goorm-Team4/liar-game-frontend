@@ -19,8 +19,24 @@ export const useWebSocketStore = create((set, get) => ({
                 console.log("(+) 웹소켓 연결 성공");
                 set({ isConnected: true });
 
-                client.subscribe('/topic/chat', (message) => {
-                    set((state) => ({ messages: [...state.messages, JSON.parse(message.body)] }));
+                const gameId = localStorage.getItem("gameId"); // 현재 게임 ID 저장된 값 사용
+
+                // 게임 정답 판별 여부 수신
+                client.subscribe(`/sub/games/${gameId}/result`, (message) => {
+                    const parsedMessage = JSON.parse(message.body);
+                    set((state) => ({ messages: [...state.messages, { type: "LIAR_RESULT", ...parsedMessage }] }));
+                });
+        
+                // 최후 변론 메시지 수신
+                client.subscribe(`/sub/games/${gameId}/chat/final`, (message) => {
+                    const parsedMessage = JSON.parse(message.body);
+                    set((state) => ({ messages: [...state.messages, { type: "FINAL_CHAT", ...parsedMessage }] }));
+                });
+        
+                // 유저 턴 메시지 수신
+                client.subscribe(`/sub/games/${gameId}/chat/turn`, (message) => {
+                    const parsedMessage = JSON.parse(message.body);
+                    set((state) => ({ messages: [...state.messages, { type: "TURN_CHAT", ...parsedMessage }] }));
                 });
             },
             onStompError: (error) => {
