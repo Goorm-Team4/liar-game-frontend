@@ -10,8 +10,11 @@ export const ImgBox = styled.div`
   margin: 4px;
   padding: 4px;
 
-  ${({ size }) => {
+  ${({ size, hidden }) => {
+    const display = hidden ? 'none' : 'flex';
+
     return css`
+      display: ${display};
       width: ${size};
       height: ${size};
     `;

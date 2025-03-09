@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Container, ProfileContainer, LobbyButtonBox } from './styles';
-import { useStepStore } from '../../store/step';
-import useGameStore from '../../store/game';
 import { useWebSocketStore } from '../../store/socket';
-import GameProfile from '../../components/game/GameProfile';
-import Button from '../../components/shared/button/index';
-import KakaoShareButton from '../../components/game/KakaoShareButton';
+import { useStepStore } from '@/store/step';
+import useGameStore from '@/store/game';
+import GameProfile from '@/components/game/GameProfile';
+import Button from '@/components/shared/button/index';
+import KakaoShareButton from '@/components/game/KakaoShareButton';
 
-import char1 from '../../assets/images/char1.png';
-import char2 from '../../assets/images/char2.png';
-import char3 from '../../assets/images/char3.png';
-import char4 from '../../assets/images/char4.png';
-import char5 from '../../assets/images/char5.png';
-import char6 from '../../assets/images/char6.png';
+import char1 from '@/assets/images/char1.png';
+import char2 from '@/assets/images/char2.png';
+import char3 from '@/assets/images/char3.png';
+import char4 from '@/assets/images/char4.png';
+import char5 from '@/assets/images/char5.png';
+import char6 from '@/assets/images/char6.png';
 
 const Lobby = () => {
   const { nextStep } = useStepStore();

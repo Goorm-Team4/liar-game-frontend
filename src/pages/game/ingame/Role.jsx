@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import vars from '../../../styles/vars';
+import vars from '@/styles/vars';
 
 const Role = () => {
   const data = {
