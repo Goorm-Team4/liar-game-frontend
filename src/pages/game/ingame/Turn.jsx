@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Container } from './styles';
-import ChatBubble from '../../../components/chat/ChatBubble';
-import GameProfile from '../../../components/game/GameProfile';
-import ChatForm from '../../../components/chat/ChatForm';
-import { useTurnStore } from '../../../store/turn';
+import ChatBubble from '@/components/chat/ChatBubble';
+import GameProfile from '@/components/game/GameProfile';
+import ChatForm from '@/components/chat/ChatForm';
+import { useTurnStore } from '@/store/turn';
 
-import char1 from '../../../assets/images/char1.png';
-import char2 from '../../../assets/images/char2.png';
-import char3 from '../../../assets/images/char3.png';
-import char4 from '../../../assets/images/char4.png';
+import char1 from '@/assets/images/char1.png';
+import char2 from '@/assets/images/char2.png';
+import char3 from '@/assets/images/char3.png';
+import char4 from '@/assets/images/char4.png';
 
 const dummyPlayers = [
   { id: 1, name: '산책하는 노루', avatar: char1, message: '' },

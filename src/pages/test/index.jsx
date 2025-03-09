@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import GuessAnswer from '../game/ingame/GuessAnswer';
+import Result from '@/pages/game/ingame/Result';
 
 function test() {
   return (
     <TestContainer>
-      <GuessAnswer />
+      <Result />
     </TestContainer>
   );
 }
