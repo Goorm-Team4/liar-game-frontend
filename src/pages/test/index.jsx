@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import Result from '@/pages/game/ingame/Result';
 
-function test() {
-  return (
-    <TestContainer>
-      <Result />
-    </TestContainer>
-  );
-}
+const test = () => {
+  return <TestContainer></TestContainer>;
+};
 
 export default test;
 
