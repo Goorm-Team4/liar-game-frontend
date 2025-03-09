@@ -31,3 +31,10 @@ export const TIMER_OPTION = [
   { index: 5, description: '찬반 투표', time: 10 },
   { index: 6, description: '최후의 저항', time: 10 },
 ];
+
+export const RESULT_DESCRIPTION = {
+  시민: '시민 승리!',
+  라이어: '라이어 승리!',
+};
+
+export const RESULT_KEYWORD = '제시어는 ';

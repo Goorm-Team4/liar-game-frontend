@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import vars from '@/styles/vars';
 
 export const Container = styled.div`
   display: flex;
@@ -63,4 +64,26 @@ export const InputContainer = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 100;
+`;
+
+export const Description = styled.div`
+  color: ${({ option }) =>
+    option === '시민' ? `${vars.colors.blue[500]}` : `${vars.colors.red}`};
+  font-size: ${vars.fontSize['2x']};
+  font-weight: ${vars.fontWeight.semibold};
+  margin: 5vh;
+`;
+
+export const WinnerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: cneter;
+  align-items: center;
+  margin: 5vh 0;
+`;
+
+export const Keyword = styled.div`
+  margin-bottom: 7vh;
+  font-size: ${vars.fontSize['1.5x']};
+  font-weight: ${vars.fontWeight.semibold};
 `;

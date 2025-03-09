@@ -1,13 +1,13 @@
 import { Container, ChatContainer, InputContainer } from './styles';
-import Chat from '../../../components/chat/index';
+import Chat from '@/components/chat/index';
 
-import char1 from '../../../assets/images/char1.png';
-import char2 from '../../../assets/images/char2.png';
-import char3 from '../../../assets/images/char3.png';
-import char4 from '../../../assets/images/char4.png';
-import char5 from '../../../assets/images/char5.png';
-import char6 from '../../../assets/images/char6.png';
-import ChatForm from '../../../components/chat/ChatForm';
+import char1 from '@/assets/images/char1.png';
+import char2 from '@/assets/images/char2.png';
+import char3 from '@/assets/images/char3.png';
+import char4 from '@/assets/images/char4.png';
+import char5 from '@/assets/images/char5.png';
+import char6 from '@/assets/images/char6.png';
+import ChatForm from '@/components/chat/ChatForm';
 
 const Argument = () => {
   // api 로 실시간 채팅 정보 받아오기

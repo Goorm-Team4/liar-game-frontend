@@ -2,9 +2,9 @@ import Role from './Role';
 import Turn from './Turn';
 import Argument from './Argument';
 import GuessAnswer from './GuessAnswer';
-import TimerBox from '../../../components/game/TimerBox';
-import Step from '../../../components/game/Step';
-import { useStepStore } from '../../../store/step';
+import TimerBox from '@/components/game/TimerBox';
+import Step from '@/components/game/Step';
+import { useStepStore } from '@/store/step';
 import GuessLiar from './GuessLiar';
 import Vote from './Vote';
 
