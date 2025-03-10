@@ -91,7 +91,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const TimerContainer = styled.div`
-  display: flex;
+  display: ${({ index }) => (index > 1 && index < 7 ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
   align-items: center;

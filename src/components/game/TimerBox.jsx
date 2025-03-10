@@ -1,35 +1,36 @@
 import { TimerContainer } from './styles';
-import { TIMER_OPTION } from '../../constants/game';
-import useTimer from '../../hooks/useTimer';
+import { TIMER_OPTION } from '@/constants/game';
+import useTimer from '@/hooks/useTimer';
 import { useEffect } from 'react';
-import { useTurnStore } from '../../store/turn';
+import { useStepStore } from '@/store/step';
 
-const TimerBox = ({ index, onNextStep }) => {
-  const currentTime = TIMER_OPTION[index - 1];
+const TimerBox = ({ index }) => {
+  const { nextStep } = useStepStore();
+
+  const currentTime = index > 0 && index < 7 && TIMER_OPTION[index];
   const initialTime = currentTime.time;
   const description = currentTime.description;
 
-  const { time, startTimer } = useTimer(initialTime, () => {
-    if (index === 2) {
-      const { turn, players } = useTurnStore.getState();
-      if (turn >= players.length) {
-        onNextStep;
-      }
-    } else if (index !== 2) {
-      onNextStep();
-    }
-  });
+  const { time, startTimer, resetTimer, stopTimer } = useTimer(
+    initialTime,
+    nextStep
+  );
 
   useEffect(() => {
-    startTimer();
-  }, [initialTime, startTimer]);
+    if (initialTime > 0) {
+      resetTimer(initialTime);
+      startTimer();
+    }
+
+    if (index === 0 || index === 7) {
+      stopTimer(0);
+    }
+  }, [initialTime, index]);
 
   return (
-    <TimerContainer>
-      <>
-        <pre>{description}</pre>
-        <p>{time}</p>
-      </>
+    <TimerContainer index={index}>
+      <pre>{description}</pre>
+      <p>{time}</p>
     </TimerContainer>
   );
 };

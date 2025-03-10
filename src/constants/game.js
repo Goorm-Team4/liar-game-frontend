@@ -23,14 +23,14 @@ export const VOTE_OPTION = [
   { label: '반대', targetId: 'disagreePlayer' },
 ];
 
-export const TIMER_OPTION = [
-  { index: 1, description: '', time: 10 },
-  { index: 2, description: '단어에 대해서 설명해주세요', time: 30 },
-  { index: 3, description: '라이어를 투표해주세요', time: 10 },
-  { index: 4, description: '최후의 변론', time: 30 },
-  { index: 5, description: '찬반 투표', time: 10 },
-  { index: 6, description: '최후의 저항', time: 10 },
-];
+export const TIMER_OPTION = {
+  1: { description: '', time: 10 },
+  2: { description: '단어에 대해서 설명해주세요', time: 30 },
+  3: { description: '라이어를 투표해주세요', time: 10 },
+  4: { description: '최후의 변론', time: 30 },
+  5: { description: '찬반 투표', time: 10 },
+  6: { description: '최후의 저항', time: 10 },
+};
 
 export const RESULT_DESCRIPTION = {
   시민: '시민 승리!',
