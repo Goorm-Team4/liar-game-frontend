@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useTimer = (initialTime, onTimeUp) => {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
+  const intervalRef = useRef();
 
   useEffect(() => {
-    let interval;
-
     if (isRunning && time > 0) {
-      interval = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime <= 1) {
-            clearInterval(interval);
-            if (onTimeUp) onTimeUp();
+            clearInterval(intervalRef.current);
             return 0;
           }
           return prevTime - 1;
@@ -20,26 +18,30 @@ const useTimer = (initialTime, onTimeUp) => {
       }, 1000);
     }
 
-    return () => clearInterval(interval);
-  }, [isRunning, time, onTimeUp]);
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning, time]);
+
+  useEffect(() => {
+    if (time === 0) {
+      if (onTimeUp) onTimeUp();
+    }
+  }, [time, onTimeUp]);
 
   const startTimer = () => {
     setIsRunning(true);
   };
 
   const resetTimer = (newTime) => {
+    stopTimer();
     setTime(newTime);
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current);
     setIsRunning(false);
   };
 
-  useEffect(() => {
-    if (initialTime > 0) {
-      resetTimer(initialTime);
-      startTimer();
-    }
-  }, [initialTime]);
-
-  return { time, startTimer, resetTimer, isRunning };
+  return { time, startTimer, resetTimer, isRunning, stopTimer };
 };
 
 export default useTimer;

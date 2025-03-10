@@ -1,6 +1,6 @@
 import VotedPlayer from './VotedPlayer';
 import { VoteContainer, VoteOption } from './styles';
-import { VOTE_OPTION } from './constants';
+import { VOTE_OPTION } from '../../constants/game';
 
 const VoteBox = () => {
   //option.label assets 추가 후 수정 필요

@@ -1,9 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 
-function test() {
+const test = () => {
   return <TestContainer></TestContainer>;
-}
+};
 
 export default test;
 
