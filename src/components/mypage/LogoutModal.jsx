@@ -1,14 +1,11 @@
 import React from 'react';
 import { LOGOUT_BUTTONS } from '@/constants/game';
-import { useNavigate } from 'react-router-dom';
 import Modal from '../shared/modal';
 import { signOut } from '@/api/users';
 
-const LogoutModal = ({ isOpen, onClose }) => {
-  const navigate = useNavigate();
-  
+const LogoutModal = ({ isOpen, onClose, navigate }) => {
   const handleAction = (action) => {
-    if (action === "logout") navigate("/login");
+    if (action === "logout") navigate("/login"); // 로그아웃 기능 적용해야 함
     if (action === "cancel") onClose();
   };
 

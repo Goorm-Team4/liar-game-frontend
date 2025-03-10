@@ -6,39 +6,27 @@ import ProfileImg from '../../components/shared/profile/ProfileImg';
 import char1 from '../../assets/images/char1.png';
 import Button from '../../components/shared/button';
 import EditProfile from './editProfile';
-import LogoutModal from './logoutModal';
-
+import { useModalStore } from '@/store/modal';
 
 function MyPage() {
   const navigate = useNavigate();
   const [tab, setTab] = useState("main");
 
   // 모달 컨트롤
-  const [isLogoutModal, setisLogoutModal] = useState(false);
-  const modalOpen = () => {
-    setisLogoutModal(true);
-  };
-  const modalClose = () => {
-    setisLogoutModal(false);
-  };
+  const openModal = useModalStore((state) => state.openModal);
 
   return (
     <PageContainer>
       <Header icon={'button'} />
-      {tab === "main" && <Main setTab={setTab} modalOpen={modalOpen} />}
+      {tab === "main" && <Main setTab={setTab} openModal={() => openModal("logout", { navigate })} />}
       {tab === "edit" && <EditProfile setTab={setTab} />}
-      <LogoutModal
-        isLogoutModal={isLogoutModal}
-        modalClose={modalClose}
-        navigate={navigate}
-      />
     </PageContainer>
-  )
+  );
 }
 
-export default MyPage
+export default MyPage;
 
-const Main = ({ setTab, modalOpen }) =>
+const Main = ({ setTab, openModal }) =>
   <>
     <MyInfoContainer>
       <ProfileImgContainer>
@@ -55,7 +43,7 @@ const Main = ({ setTab, modalOpen }) =>
       <Button color={"white"} children={"플레이방법"} />
       <Button color={"white"} children={"계정설정"} />
       <Button color={"white"} children={"문의하기"} />
-      <Button color={"white"} children={"로그아웃"} onClick={modalOpen} />
+      <Button color={"white"} children={"로그아웃"} onClick={openModal} />
     </MenuContainer>
   </>
 
