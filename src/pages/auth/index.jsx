@@ -9,12 +9,17 @@ const Auth = () => {
   console.log(code)
 
   useEffect(() => {
+    const code = new URL(window.location.href).searchParams.get("accessToken");
+    console.log(code);
+    localStorage.setItem("accessToken", code);
+
     const timer = setTimeout(() => {
       navigate("/");
     }, 1000);
 
     return () => clearTimeout(timer); // 타이머 종료
-  }, [])
+
+  }, []);
 
   return (
     <></>

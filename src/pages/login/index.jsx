@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import kakaoLoginLogo from '@/assets/images/kakao_login_medium_narrow.png';
+import { useEffect } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();
-  const kakaoApiKey = import.meta.env.VITE_KAKAO_API_KEY;
-  const redirect_uri = 'http://localhost:3000/auth';
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirect_uri}&response_type=code`;
-  const kakaoLoginURL = `http://43.201.26.110/oauth2/authorization/kakao `;
+  const kakaoLoginURL = import.meta.env.VITE_KAKAO_URL;
 
   function kakaoLoginHandle() {
-    window.location.href = kakaoURL;
+    window.location.href = kakaoLoginURL;
   }
 
   return (
