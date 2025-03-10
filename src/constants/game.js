@@ -38,3 +38,13 @@ export const RESULT_DESCRIPTION = {
 };
 
 export const RESULT_KEYWORD = '제시어는 ';
+
+export const GAME_INTERRUPTED_BUTTONS = [
+  { label: '다시하기', color: 'blue', size: 'medium', action: 'retry' },
+  { label: '홈으로', color: 'gray', size: 'medium', action: 'home' },
+];
+
+export const LOGOUT_BUTTONS = [
+  { label: '확인', color: 'blue', size: 'medium', action: 'logout' },
+  { label: '취소', color: 'gray', size: 'medium', action: 'cancel' },
+];
