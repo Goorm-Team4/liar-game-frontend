@@ -91,7 +91,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const TimerContainer = styled.div`
-  display: flex;
+  display: ${({ index }) => (index > 1 && index < 7 ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -109,6 +109,10 @@ export const TimerContainer = styled.div`
     font-weight: ${vars.fontWeight.bold};
   }
 `;
+
+export const TimerDescription = styled.div``;
+
+export const TimerTime = styled.div``;
 
 export const Slide = styled.div`
   background-color: ${vars.colors.white};
