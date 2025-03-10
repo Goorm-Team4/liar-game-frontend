@@ -3,6 +3,7 @@ import { TIMER_OPTION } from '@/constants/game';
 import useTimer from '@/hooks/useTimer';
 import { useEffect } from 'react';
 import { useStepStore } from '@/store/step';
+import { useTurnStore } from '@/store/turn';
 
 const TimerBox = ({ index }) => {
   const { nextStep } = useStepStore();

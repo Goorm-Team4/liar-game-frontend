@@ -11,13 +11,11 @@ import Step from '@/components/game/Step';
 import { useStepStore } from '@/store/step';
 
 const Ingame = () => {
-  const { step, nextStep } = useStepStore();
-
-  console.log(step);
+  const { step } = useStepStore();
 
   return (
     <>
-      <TimerBox index={step} onNextStep={nextStep} />
+      <TimerBox index={step} />
       <Step index={1}>
         <Role />
       </Step>

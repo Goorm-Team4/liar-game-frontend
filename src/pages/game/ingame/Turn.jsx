@@ -18,61 +18,46 @@ const dummyPlayers = [
 ];
 
 const Turn = () => {
-  // const { turn, incrementTurn, setPlayers } = useTurnStore((state) => ({
-  //   turn: state.turn,
-  //   incrementTurn: state.incrementTurn,
-  //   setPlayers: state.setPlayers,
-  // }));
+  const {
+    setPlayers,
+    players,
+    incrementTurn,
+    setPlayerCount,
+    startTurn,
+    endTurn,
+  } = useTurnStore();
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [lastMessage, setLastMessage] = useState('');
 
-  // const [players] = useState(dummyPlayers);
-  // const [currentPlayer, setCurrentPlayer] = useState(players[0]);
-  // const [lastMessage, setLastMessage] = useState('');
-  // const [time, setTime] = useState(30);
-  // const [isRunning, setIsRunning] = useState(true);
+  useEffect(() => {
+    setPlayers(dummyPlayers);
+    setPlayerCount(dummyPlayers.length);
+    startTurn();
+  }, []);
 
-  // useEffect(() => {
-  //   setPlayers(dummyPlayers);
-  // }, [setPlayers]);
+  const handleSendMessage = (message) => {
+    if (!message.trim()) return;
 
-  // useEffect(() => {
-  //   if (players.length > 0) {
-  //     setCurrentPlayer(players[turn]);
-  //     setTime(30);
-  //     setIsRunning(true);
-  //   }
-  // }, [turn, players]);
+    setLastMessage(message);
 
-  // useEffect(() => {
-  //   if (isRunning && time > 0) {
-  //     const interval = setInterval(() => {
-  //       setTime((prevTime) => prevTime - 1);
-  //     }, 1000);
-  //     return () => clearInterval(interval);
-  //   } else if (time === 0) {
-  //     handleNextTurn();
-  //   }
-  // }, [isRunning, time]);
+    const timeoutId = setTimeout(() => {
+      // 이 부분 player 교체 되면서 말풍선도 reset 할건지 결정.
+      if (currentPlayerIndex < players.length - 1) {
+        setCurrentPlayerIndex((prev) => prev + 1);
+        incrementTurn();
+      } else {
+        endTurn();
+      }
+    }, 2000);
 
-  // const handleNextTurn = () => {
-  //   incrementTurn();
-  //   setTime(30);
-  //   setLastMessage('');
-  // };
+    return () => clearTimeout(timeoutId);
+  };
 
-  // const handleSendMessage = (message) => {
-  //   if (!message.trim()) return;
-
-  //   setLastMessage(message);
-  //   setPlayers((prev) => {
-  //     return prev.map((player) =>
-  //       player.id === currentPlayer.id ? { ...player, message } : player
-  //     );
-  //   });
-  // };
+  const currentPlayer = players[currentPlayerIndex];
 
   return (
     <Container>
-      {/* <ChatBubble size="large" message={lastMessage} />
+      <ChatBubble size="large" message={lastMessage} />
       {currentPlayer && (
         <GameProfile
           size="large"
@@ -81,7 +66,6 @@ const Turn = () => {
         />
       )}
       <ChatForm isMyTurn onSendMessage={handleSendMessage} />
-      <p>남은 시간: {time}초</p> 남은 시간 표시 */}
     </Container>
   );
 };
