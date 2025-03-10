@@ -30,7 +30,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const TitleContainer = styled.h2`
-  font-size: ${vars.fontSize['1.5x']};
+  font-size: ${vars.fontSize['1.25x']};
   font-weight: ${vars.fontWeight['semibold']};
   text-align: center;
 `;
