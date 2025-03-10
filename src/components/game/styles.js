@@ -110,10 +110,6 @@ export const TimerContainer = styled.div`
   }
 `;
 
-export const TimerDescription = styled.div``;
-
-export const TimerTime = styled.div``;
-
 export const Slide = styled.div`
   background-color: ${vars.colors.white};
   border-top-left-radius: ${vars.borderRadius['2x']};
