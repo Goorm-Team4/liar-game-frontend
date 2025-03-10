@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { getMyinfo } from '../../api/users';
 
 const Home = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const code = new URL(window.location.href).searchParams.get("accessToken");
+    console.log(code);
+    localStorage.setItem("accessToken",code);
+    
+    getMyinfo((res)=> {
+      console.log(res.data.data.email);
+    })
+
+    return () => {
+      
+    };
+  }, []);
 
   return (
     <PageContainer>
