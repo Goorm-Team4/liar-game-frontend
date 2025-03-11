@@ -9,9 +9,29 @@ import Result from './Result';
 import TimerBox from '@/components/game/TimerBox';
 import Step from '@/components/game/Step';
 import { useStepStore } from '@/store/step';
+import { useTurnStore } from '@/store/turn';
+import { useEffect } from 'react';
+
+import char1 from '@/assets/images/char1.png';
+import char2 from '@/assets/images/char2.png';
+import char3 from '@/assets/images/char3.png';
+import char4 from '@/assets/images/char4.png';
+
+const dummyPlayers = [
+  { id: 1, name: '산책하는 노루', avatar: char1, message: '' },
+  { id: 2, name: '흥청망청 코끼리', avatar: char2, message: '' },
+  { id: 3, name: '물먹는 버섯', avatar: char3, message: '' },
+  { id: 4, name: '노래하는 달팽이', avatar: char4, message: '' },
+];
 
 const Ingame = () => {
   const { step } = useStepStore();
+  const { setPlayers, setPlayerCount } = useTurnStore();
+
+  useEffect(() => {
+    setPlayers(dummyPlayers);
+    setPlayerCount(dummyPlayers.length);
+  }, []);
 
   return (
     <>
