@@ -9,8 +9,13 @@ import Result from './Result';
 import TimerBox from '@/components/game/TimerBox';
 import Step from '@/components/game/Step';
 import { useStepStore } from '@/store/step';
+
 import { useTurnStore } from '@/store/turn';
 import { useEffect } from 'react';
+
+import { useWebSocketStore } from '@/store/socket';
+import { useModalStore } from '@/store/modal';
+import { useNavigate } from 'react-router-dom';
 
 import char1 from '@/assets/images/char1.png';
 import char2 from '@/assets/images/char2.png';
@@ -27,6 +32,19 @@ const dummyPlayers = [
 const Ingame = () => {
   const { step } = useStepStore();
   const { setPlayers, setPlayerCount } = useTurnStore();
+
+  const isConnected = useWebSocketStore((state) => state.isConnected);
+  const openModal = useModalStore((state) => state.openModal);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isConnected) {
+      openModal("gameInterrupt", {
+        onRetry: () => navigate("/game"),
+        onHome: () => navigate("/"),
+      });
+    }
+  }, [isConnected, openModal, navigate]);
 
   useEffect(() => {
     setPlayers(dummyPlayers);

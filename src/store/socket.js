@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { Client } from "@stomp/stompjs";
+import { useModalStore } from "@/store/modal";
 
-const SOCKET_URL = "ws://43.201.26.110:8080/ws-connect";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
 export const useWebSocketStore = create((set, get) => ({
     stompClient: null,
@@ -39,9 +40,29 @@ export const useWebSocketStore = create((set, get) => ({
                     set((state) => ({ messages: [...state.messages, { type: "TURN_CHAT", ...parsedMessage }] }));
                 });
             },
+
+            // stomp 프로토콜 내부 오류 발생 시
             onStompError: (error) => {
-                console.error("(-) 웹소켓 오류 발생: ", error);
+                console.error("(-) STOMP 프로토콜 오류 발생: ", error);
                 set({ isConnected: false });
+
+                const { openModal } = useModalStore.getState();
+                openModal("gameInterrupt", {
+                    onRetry: () => window.location.href = "/game",
+                    onHome: () => window.location.href = "/",
+                });
+            },
+
+            // 브라우저 레벨의 웹소켓 연결 끊겼을 때
+            onWebSocketClose: () => {
+                console.warn("(-) 웹소켓 연결 끊김 감지");
+                set({ isConnected: false });
+
+                const { openModal } = useModalStore.getState();
+                openModal("gameInterrupt", {
+                onRetry: () => window.location.href = "/game",
+                onHome: () => window.location.href = "/",
+                });
             },
         });
 
