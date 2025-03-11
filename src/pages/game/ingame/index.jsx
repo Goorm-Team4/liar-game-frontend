@@ -9,18 +9,34 @@ import Result from './Result';
 import TimerBox from '@/components/game/TimerBox';
 import Step from '@/components/game/Step';
 import { useStepStore } from '@/store/step';
+
+import { useTurnStore } from '@/store/turn';
+import { useEffect } from 'react';
+
 import { useWebSocketStore } from '@/store/socket';
 import { useModalStore } from '@/store/modal';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
+import char1 from '@/assets/images/char1.png';
+import char2 from '@/assets/images/char2.png';
+import char3 from '@/assets/images/char3.png';
+import char4 from '@/assets/images/char4.png';
+
+const dummyPlayers = [
+  { id: 1, name: '산책하는 노루', avatar: char1, message: '' },
+  { id: 2, name: '흥청망청 코끼리', avatar: char2, message: '' },
+  { id: 3, name: '물먹는 버섯', avatar: char3, message: '' },
+  { id: 4, name: '노래하는 달팽이', avatar: char4, message: '' },
+];
 
 const Ingame = () => {
-  const { step, nextStep } = useStepStore();
+  const { step } = useStepStore();
+  const { setPlayers, setPlayerCount } = useTurnStore();
+
   const isConnected = useWebSocketStore((state) => state.isConnected);
   const openModal = useModalStore((state) => state.openModal);
   const navigate = useNavigate();
 
-  // 연결 끊김 감지 -> 모달 호출
   useEffect(() => {
     if (!isConnected) {
       openModal("gameInterrupt", {
@@ -30,11 +46,14 @@ const Ingame = () => {
     }
   }, [isConnected, openModal, navigate]);
 
-  console.log(step);
+  useEffect(() => {
+    setPlayers(dummyPlayers);
+    setPlayerCount(dummyPlayers.length);
+  }, []);
 
   return (
     <>
-      <TimerBox index={step} onNextStep={nextStep} />
+      <TimerBox index={step} />
       <Step index={1}>
         <Role />
       </Step>

@@ -5,4 +5,5 @@ export const useStepStore = create((set) => ({
   nextStep: () =>
     set((prevState) => ({ step: Math.min(prevState.step + 1, 6) })),
   resetStep: () => set(() => ({ step: 0 })),
+  setStep: () => set(() => ({ step: 2 })),
 }));
