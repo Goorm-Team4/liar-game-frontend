@@ -48,3 +48,7 @@ export const LOGOUT_BUTTONS = [
   { label: '확인', color: 'blue', size: 'medium', action: 'logout' },
   { label: '취소', color: 'gray', size: 'medium', action: 'cancel' },
 ];
+
+export const PLAYGUIDE_BUTTONS = [
+  { label: '확인', color: 'blue', size: 'small', action: 'logout' },
+];

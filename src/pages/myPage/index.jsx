@@ -7,10 +7,14 @@ import char1 from '../../assets/images/char1.png';
 import Button from '../../components/shared/button';
 import EditProfile from './editProfile';
 import { useModalStore } from '@/store/modal';
+import useUserStore from '@/store/user';
 
 function MyPage() {
   const navigate = useNavigate();
   const [tab, setTab] = useState("main");
+
+  // 내 정보
+  const { user, setUser } = useUserStore();
 
   // 모달 컨트롤
   const openModal = useModalStore((state) => state.openModal);
@@ -18,7 +22,7 @@ function MyPage() {
   return (
     <PageContainer>
       <Header icon={'button'} />
-      {tab === "main" && <Main setTab={setTab} openModal={() => openModal("logout", { navigate })} />}
+      {tab === "main" && <Main setTab={setTab} openModal={() => openModal("logout", { navigate })} user={user}/>}
       {tab === "edit" && <EditProfile setTab={setTab} />}
     </PageContainer>
   );
@@ -26,14 +30,14 @@ function MyPage() {
 
 export default MyPage;
 
-const Main = ({ setTab, openModal }) =>
+const Main = ({ setTab, openModal, user }) =>
   <>
     <MyInfoContainer>
       <ProfileImgContainer>
         <ProfileImg size={"120px"} src={char1} />
       </ProfileImgContainer>
       <div>
-        <span>상냥한 산양</span>
+        <span>{user.username}</span>
       </div>
     </MyInfoContainer>
     <BorderLine />
@@ -53,6 +57,7 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  position: relative;
 `;
 
 const ProfileImgContainer = styled.div`

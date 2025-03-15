@@ -6,7 +6,9 @@ import Login from '@/pages/login';
 import Auth from '@/pages/auth';
 import MyPage from '@/pages/mypage';
 import Game from '@/pages/game';
-import Test from '@/pages/test';
+import Rank from '@/pages/rank';
+import Shop from '@/pages/shop';
+import ComingSoon from '@/pages/comingsoon';
 
 const router = createBrowserRouter([
   {
@@ -18,20 +20,24 @@ const router = createBrowserRouter([
     element: <Auth />,
   },
   {
-    path: `${ROUTE.mypage}`,
-    element: <MyPage />,
-  },
-  {
     path: `${ROUTE.main}`,
     element: <Home />,
+  },
+  {
+    path: `${ROUTE.mypage}`,
+    element: <MyPage />,
   },
   {
     path: `${ROUTE.game}`,
     element: <Game />,
   },
   {
-    path: `${ROUTE.test}`,
-    element: <Test />,
+    path: `${ROUTE.rank}`,
+    element: <ComingSoon />,
+  },
+  {
+    path: `${ROUTE.shop}`,
+    element: <ComingSoon />,
   },
 ]);
 

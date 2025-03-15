@@ -2,6 +2,7 @@ import React from 'react';
 import { useModalStore } from '@/store/modal';
 import LogoutModal from '@/components/mypage/LogoutModal';
 import GameInterruptModal from '@/components/game/GameInterruptModal';
+import PlayGuideModal from '@/components/home/PlayGuideModal';
 
 const GlobalModalContainer = () => {
   const { modalType, modalProps, isOpen, closeModal } = useModalStore();
@@ -13,6 +14,8 @@ const GlobalModalContainer = () => {
       return <LogoutModal isOpen={isOpen} onClose={closeModal} {...modalProps} />;
     case 'gameInterrupt':
       return <GameInterruptModal isOpen={isOpen} onClose={closeModal} {...modalProps} />;
+    case 'playGuide':
+      return <PlayGuideModal isOpen={isOpen} onClose={closeModal} {...modalProps} />;
     default:
       return null;
     }
