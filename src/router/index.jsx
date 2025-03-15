@@ -8,7 +8,6 @@ import MyPage from '@/pages/mypage';
 import Game from '@/pages/game';
 import Rank from '@/pages/rank';
 import Shop from '@/pages/shop';
-import Test from '@/pages/test';
 
 const router = createBrowserRouter([
   {
@@ -20,12 +19,12 @@ const router = createBrowserRouter([
     element: <Auth />,
   },
   {
-    path: `${ROUTE.mypage}`,
-    element: <MyPage />,
-  },
-  {
     path: `${ROUTE.main}`,
     element: <Home />,
+  },
+  {
+    path: `${ROUTE.mypage}`,
+    element: <MyPage />,
   },
   {
     path: `${ROUTE.game}`,
@@ -38,10 +37,6 @@ const router = createBrowserRouter([
   {
     path: `${ROUTE.shop}`,
     element: <Shop />,
-  },
-  {
-    path: `${ROUTE.test}`,
-    element: <Test />,
   },
 ]);
 

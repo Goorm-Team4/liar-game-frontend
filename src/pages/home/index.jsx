@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import { useEffect } from 'react';
+import {
+  PageContainer,
+  SectionContainer,
+  TitleContainer,
+  ButtonContainer,
+} from './styles';
 import { useNavigate } from 'react-router-dom';
-import { getMyinfo } from '../../api/users';
+import { getMyinfo } from '@/api/users';
 import useAuthStore from '@/store/auth';
 import NavBar from '@/components/home/NavBar';
+
 import useUserStore from '@/store/user';
 import { useModalStore } from '@/store/modal';
+import Button from '@/components/shared/button';
+import { ROUTE } from '@/constants/router';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,22 +22,27 @@ const Home = () => {
 
   const openModal = useModalStore((state) => state.openModal);
 
+  const clickCreateRoom = () => {
+    navigate(ROUTE.game);
+  };
+
+  const clickPlayGuide = () => {
+    openModal('playGuide');
+  };
+
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get("accessToken");
+    const code = new URL(window.location.href).searchParams.get('accessToken');
     login(code);
 
     getMyinfo((res) => {
       setUser({
-        username : res.data.data.username,
-        profileImageUrl : res.data.data.profileImageUrl,
-        email : res.data.data.email
-      })
-      console.log(res.data.data.username);
-    })
+        username: res.data.data.username,
+        profileImageUrl: res.data.data.profileImageUrl,
+        email: res.data.data.email,
+      });
+    });
 
-    return () => {
-
-    };
+    return () => {};
   }, []);
 
   return (
@@ -37,8 +50,12 @@ const Home = () => {
       <SectionContainer>
         <TitleContainer>라이어게임</TitleContainer>
         <ButtonContainer>
-          <Button onClick={() => navigate('/game')}>방 만들기</Button>
-          <ManualButton onClick={() => openModal('playGuide')}>플레이 방법</ManualButton>
+          <Button size="large" color="blue" onClick={clickCreateRoom}>
+            방 만들기
+          </Button>
+          <Button size="large" color="red" onClick={clickPlayGuide}>
+            플레이 방법
+          </Button>
         </ButtonContainer>
       </SectionContainer>
       <NavBar></NavBar>
@@ -47,64 +64,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-`;
-
-const SectionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 15vh;
-  padding: 9vh;
-`;
-
-const TitleContainer = styled.div`
-  font-weight: 700;
-  font-size: 4.5vh;
-  text-align: center;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3vh;
-  width: 90%;
-  align-self: center;
-  justify-content: center;
-`;
-
-const Button = styled.button`
-  padding: 12px 24px;
-  font-size: 2.5vh;
-  font-weight: 500;
-  background-color: #f1f1f1;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #ddd;
-  }
-`;
-
-const ManualButton = styled.button`
-  padding: 0;
-  margin: 0;
-  font-size: 2.5vh;
-  font-weight: 500;
-  color: #f80808;
-  background-color: transparent;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-
-  &:active {
-    transform: scale(0.95);
-  }
-`;

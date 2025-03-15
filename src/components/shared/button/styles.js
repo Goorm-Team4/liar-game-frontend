@@ -12,6 +12,8 @@ const colorType = {
   blue: `background-color: ${vars.colors.blue[500]}; color: ${vars.colors.white}`,
   gray: `background-color: ${vars.colors.gray[200]}; color: ${vars.colors.gray[800]}`,
   white: `background-color: ${vars.colors.white}; color: ${vars.colors.blue[500]}; &:hover {box-shadow: none}`,
+  red: `background-color: ${vars.colors.white}; color: ${vars.colors.red}; &:active {
+    transform: scale(0.95);}`,
 };
 
 export const ButtonBox = styled.button`
