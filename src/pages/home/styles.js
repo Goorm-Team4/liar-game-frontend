@@ -25,8 +25,7 @@ export const TitleContainer = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3vh;
-  width: 90%;
+  gap: 2vh;
   align-self: center;
   justify-content: center;
 `;

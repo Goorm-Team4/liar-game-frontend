@@ -8,6 +8,7 @@ import MyPage from '@/pages/mypage';
 import Game from '@/pages/game';
 import Rank from '@/pages/rank';
 import Shop from '@/pages/shop';
+import ComingSoon from '@/pages/comingsoon';
 
 const router = createBrowserRouter([
   {
@@ -32,11 +33,11 @@ const router = createBrowserRouter([
   },
   {
     path: `${ROUTE.rank}`,
-    element: <Rank />,
+    element: <ComingSoon />,
   },
   {
     path: `${ROUTE.shop}`,
-    element: <Shop />,
+    element: <ComingSoon />,
   },
 ]);
 

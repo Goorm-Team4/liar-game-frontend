@@ -6,4 +6,5 @@ export const ROUTE = {
   game: '/game',
   shop: '/shop',
   rank: '/rank',
+  comingsoon: '/comingsoon',
 };
