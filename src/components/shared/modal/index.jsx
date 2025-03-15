@@ -2,12 +2,13 @@ import React from 'react';
 import Button from '@/components/shared/button';
 import { Backdrop, ModalContainer, TitleContainer, ButtonContainer } from './styles';
 
-function Modal({ onClose, title, buttons = []}) {
+function Modal({ onClose, title, child, buttons = []}) {
   return (
     <>
       <Backdrop onClick={onClose}>
       <ModalContainer>
         <TitleContainer>{title}</TitleContainer>
+        {child}
         <ButtonContainer>
           {buttons.map((btn, index) => (
             <Button 

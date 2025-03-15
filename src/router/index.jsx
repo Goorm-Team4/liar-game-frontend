@@ -6,6 +6,8 @@ import Login from '@/pages/login';
 import Auth from '@/pages/auth';
 import MyPage from '@/pages/mypage';
 import Game from '@/pages/game';
+import Rank from '@/pages/rank';
+import Shop from '@/pages/shop';
 import Test from '@/pages/test';
 
 const router = createBrowserRouter([
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: `${ROUTE.game}`,
     element: <Game />,
+  },
+  {
+    path: `${ROUTE.rank}`,
+    element: <Rank />,
+  },
+  {
+    path: `${ROUTE.shop}`,
+    element: <Shop />,
   },
   {
     path: `${ROUTE.test}`,

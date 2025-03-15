@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import vars from '../../../styles/vars';
 
 export const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   background-color: transparent;
   width: 100%;
   height: 8vh;
-  display: flex;
-  flex-direction: row;
-  position: relative;
   align-items: center;
+  position: absolute;
+  top: 0;
 `;
 
 export const ButtonBox = styled.div`

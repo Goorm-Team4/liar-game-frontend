@@ -2,21 +2,33 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { getMyinfo } from '../../api/users';
+import useAuthStore from '@/store/auth';
+import NavBar from '@/components/home/NavBar';
+import useUserStore from '@/store/user';
+import { useModalStore } from '@/store/modal';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
+  const { user, setUser } = useUserStore();
+
+  const openModal = useModalStore((state) => state.openModal);
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("accessToken");
-    console.log(code);
-    localStorage.setItem("accessToken",code);
-    
-    getMyinfo((res)=> {
-      console.log(res.data.data.email);
+    login(code);
+
+    getMyinfo((res) => {
+      setUser({
+        username : res.data.data.username,
+        profileImageUrl : res.data.data.profileImageUrl,
+        email : res.data.data.email
+      })
+      console.log(res.data.data.username);
     })
 
     return () => {
-      
+
     };
   }, []);
 
@@ -26,9 +38,10 @@ const Home = () => {
         <TitleContainer>라이어게임</TitleContainer>
         <ButtonContainer>
           <Button onClick={() => navigate('/game')}>방 만들기</Button>
-          <ManualButton>플레이 방법</ManualButton>
+          <ManualButton onClick={() => openModal('playGuide')}>플레이 방법</ManualButton>
         </ButtonContainer>
       </SectionContainer>
+      <NavBar></NavBar>
     </PageContainer>
   );
 };
@@ -37,15 +50,17 @@ export default Home;
 
 const PageContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  position: relative;
   height: 100vh;
 `;
 
 const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 100%;
+  gap: 15vh;
   padding: 9vh;
 `;
 
@@ -53,7 +68,6 @@ const TitleContainer = styled.div`
   font-weight: 700;
   font-size: 4.5vh;
   text-align: center;
-  margin-top: 7vh;
 `;
 
 const ButtonContainer = styled.div`
