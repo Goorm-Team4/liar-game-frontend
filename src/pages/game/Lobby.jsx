@@ -19,6 +19,9 @@ const Lobby = () => {
   const startGame = useGameStore((state) => state.startGame);
   const { connectWebSocket, disconnectWebSocket } = useWebSocketStore();
 
+  // gameId 받아오기
+  // const gameId =
+
   const [players, setPlayers] = useState([
     { id: 1, name: "산책하는 노루", avatar: char1 },
     { id: 2, name: "흥청망청 코끼리", avatar: char2 },
