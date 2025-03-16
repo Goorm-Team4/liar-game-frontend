@@ -61,7 +61,7 @@ const Lobby = () => {
         <Button size="large" color="blue" onClick={handleClick}>
           시작하기
         </Button>
-        <KakaoShareButton gameId={gameId} />
+        <KakaoShareButton />
       </LobbyButtonBox>
     </Container>
   );
