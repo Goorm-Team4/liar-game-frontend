@@ -4,11 +4,12 @@ import {
   SectionContainer,
   TitleContainer,
   ButtonContainer,
-} from './styles';
+} from './styles';
 import { useNavigate } from 'react-router-dom';
 import { getMyinfo } from '@/api/users';
 import useAuthStore from '@/store/auth';
 import NavBar from '@/components/home/NavBar';
+import { postCreateRoom } from '@/api/game';
 
 import useUserStore from '@/store/user';
 import { useModalStore } from '@/store/modal';
@@ -23,7 +24,14 @@ const Home = () => {
   const openModal = useModalStore((state) => state.openModal);
 
   const clickCreateRoom = () => {
-    navigate(ROUTE.game);
+    if (!user.memberId) return;
+
+    const roomId = postCreateRoom();
+    console.log(roomId);
+  };
+
+  const clickLoginButton = () => {
+    navigate(ROUTE.login);
   };
 
   const clickPlayGuide = () => {
@@ -36,6 +44,7 @@ const Home = () => {
 
     getMyinfo((res) => {
       setUser({
+        memberId: res.data.data.memberId,
         username: res.data.data.username,
         profileImageUrl: res.data.data.profileImageUrl,
         email: res.data.data.email,
@@ -53,12 +62,17 @@ const Home = () => {
           <Button size="large" color="blue" onClick={clickCreateRoom}>
             방 만들기
           </Button>
+          {user.memberId === '' && (
+            <Button size="large" color="white" onClick={clickLoginButton}>
+              로그인하러가기
+            </Button>
+          )}
           <Button size="large" color="red" onClick={clickPlayGuide}>
             플레이 방법
           </Button>
         </ButtonContainer>
       </SectionContainer>
-      <NavBar></NavBar>
+      <NavBar />
     </PageContainer>
   );
 };

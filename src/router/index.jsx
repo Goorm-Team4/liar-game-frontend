@@ -6,8 +6,6 @@ import Login from '@/pages/login';
 import Auth from '@/pages/auth';
 import MyPage from '@/pages/mypage';
 import Game from '@/pages/game';
-import Rank from '@/pages/rank';
-import Shop from '@/pages/shop';
 import ComingSoon from '@/pages/comingsoon';
 
 const router = createBrowserRouter([
